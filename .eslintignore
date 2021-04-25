@@ -1,0 +1,5 @@
+build
+coverage
+db
+node_modules
+out
