@@ -4,6 +4,9 @@
   "description": "An Electron app to assist manage orders for a pizzeria shop",
   "main": "public/main.js",
   "homepage": "./",
+  "repository": {
+    "url": "https://github.com/mancioshell/electron-virtual-pizzeria-assistant.git"
+  },
   "scripts": {
     "commit": "git-cz",
     "electron": "wait-on tcp:3000 && electron-forge start",
