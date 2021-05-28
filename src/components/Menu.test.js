@@ -5,9 +5,19 @@ import '@testing-library/jest-dom/extend-expect'
 import Menu from './Menu'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
+import { SettingsContext } from '../context/SettingsContext'
 
 let settings = {
   name: 'La Pinseria JG'
+}
+
+const customRender = (ui, { providerProps, ...renderOptions }) => {
+  return render(
+    <SettingsContext.Provider {...providerProps}>
+      {ui}
+    </SettingsContext.Provider>,
+    renderOptions
+  )
 }
 
 beforeEach(() => {
@@ -22,11 +32,15 @@ afterEach(() => {
 
 test('loads and displays menu brand', async () => {
   const history = createMemoryHistory()
+  const providerProps = {
+    value: { settings }
+  }
 
-  render(
+  customRender(
     <Router history={history}>
       <Menu />
-    </Router>
+    </Router>,
+    { providerProps }
   )
 
   await waitFor(() => {

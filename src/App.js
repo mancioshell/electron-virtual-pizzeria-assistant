@@ -5,7 +5,7 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Container, Row, Col } from 'react-bootstrap'
 
@@ -21,6 +21,7 @@ import { InsertDish } from './pages/InsertDishItem'
 import { InsertSettings } from './pages/InsertSettings'
 import { DishList } from './pages/DishList'
 import { UIContext } from './context/UIContext'
+import { SettingsContext, initSettings } from './context/SettingsContext'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
@@ -37,9 +38,26 @@ function App() {
     show: false
   })
 
+  const [settings, setSettings] = useState(initSettings)
+
+  useEffect(() => {
+    const getSettings = async () => {
+      let settings = await window?.api?.getSettings()
+      setSettings(settings)
+    }
+
+    getSettings()
+  }, [])
+
   return (
     <Router>
-      <Menu></Menu>
+      <SettingsContext.Provider
+        value={{
+          settings,
+          setSettings
+        }}>
+        <Menu></Menu>
+      </SettingsContext.Provider>
 
       <Container className="justify-content-md-center mt-5" fluid>
         <UIContext.Provider
@@ -97,7 +115,13 @@ function App() {
                 </Route>
 
                 <Route path="/insert-settings">
-                  <InsertSettings />
+                  <SettingsContext.Provider
+                    value={{
+                      settings,
+                      setSettings
+                    }}>
+                    <InsertSettings />
+                  </SettingsContext.Provider>
                 </Route>
 
                 <Redirect to="/insert-order" />

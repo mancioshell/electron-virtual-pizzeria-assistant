@@ -1,36 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import UIContext from '../context/UIContext'
 
 import SettingsForm from '../components/SettingsForm'
-
-const initSettings = {
-  name: '',
-  address: '',
-  cap: '00146',
-  city: '',
-  phone: '',
-  network: {
-    address: '',
-    port: 9100
-  }
-}
+import { SettingsContext } from '../context/SettingsContext'
 
 function InsertSettings() {
-  const [settings, setSettings] = useState(initSettings)
-
+  const { settings, setSettings } = useContext(SettingsContext)
   const { addSuccessMessage } = useContext(UIContext)
-
-  useEffect(() => {
-    const getCurrentSettings = async () => {
-      let currentSettings = await window?.api?.getSettings()
-      setSettings(currentSettings)
-    }
-
-    getCurrentSettings()
-  }, [])
 
   const saveSettings = async (savedSettings, resetForm) => {
     await window?.api?.insertSettings(savedSettings)
+    setSettings(savedSettings)
     resetForm(savedSettings)
     addSuccessMessage({
       text: 'Impostazioni salvate con successo',

@@ -1,11 +1,9 @@
-const { app, BrowserWindow, autoUpdater } = require('electron')
+const { app, BrowserWindow, autoUpdater, dialog } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 
 const server = 'https://hazel-jcj4avfmk-mancioshell.vercel.app'
 const url = `${server}/update/${process.platform}/${app.getVersion()}`
-
-autoUpdater.setFeedURL({ url })
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension, REACT_DEVELOPER_TOOLS
@@ -19,6 +17,34 @@ if (isDev) {
 // Handle creating/removing shortcuts on Windows when installing/uninstalling
 if (require('electron-squirrel-startup')) {
   app.quit()
+}
+
+function createAutoUpdater() {
+  autoUpdater.setFeedURL({ url })
+
+  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+    const dialogOpts = {
+      type: 'info',
+      buttons: ['Riavvia', 'Rimanda'],
+      title: 'Aggiornamento Applicazione',
+      message: process.platform === 'win32' ? releaseNotes : releaseName,
+      detail:
+        "E' stato eseguito il download di una nuova versione. Riavvia l'applicazione per applicare gli aggiornamenti."
+    }
+
+    dialog.showMessageBox(dialogOpts).then((returnValue) => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    })
+  })
+
+  autoUpdater.on('error', (message) => {
+    console.error('There was a problem updating the application')
+    console.error(message)
+  })
+
+  setInterval(() => {
+    autoUpdater.checkForUpdates()
+  }, 6000)
 }
 
 function createWindow() {
@@ -49,6 +75,8 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow()
+
+  if (!isDev) createAutoUpdater()
 
   if (isDev) {
     installExtension(REACT_DEVELOPER_TOOLS)
