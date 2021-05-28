@@ -1,13 +1,16 @@
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 
 import { LinkContainer } from 'react-router-bootstrap'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+
+import { SettingsContext } from '../context/SettingsContext'
 
 function Menu() {
   const history = useHistory()
   const [active, setActive] = useState('default')
-  const [name, setName] = useState('')
+
+  const { settings } = useContext(SettingsContext)
 
   useEffect(() => {
     return history.listen((location) => {
@@ -17,20 +20,11 @@ function Menu() {
     })
   }, [history])
 
-  useEffect(() => {
-    const getSettings = async () => {
-      let settings = await window?.api?.getSettings()
-      setName(settings.name)
-    }
-
-    getSettings()
-  }, [])
-
   return (
     <Navbar bg="light" expand="lg">
       <LinkContainer to="/insert-order">
         <Navbar.Brand href="">
-          <i className="fas fa-pizza-slice"></i> {name} Assistant{' '}
+          <i className="fas fa-pizza-slice"></i> {settings.name} Assistant{' '}
         </Navbar.Brand>
       </LinkContainer>
 
