@@ -1,6 +1,6 @@
 {
   "name": "electron-virtual-pizzeria-assistant",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "An Electron app to assist manage orders for a pizzeria shop",
   "main": "public/main.js",
   "homepage": "./",
