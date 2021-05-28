@@ -1,11 +1,11 @@
-const { app, BrowserWindow, autoUpdater  } = require('electron')
+const { app, BrowserWindow, autoUpdater } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 
-const server = "https://hazel-jcj4avfmk-mancioshell.vercel.app/"
-const feed = `${server}/update/${process.platform}/${app.getVersion()}`
+const server = 'https://hazel-jcj4avfmk-mancioshell.vercel.app'
+const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
-autoUpdater.setFeedURL(feed)
+autoUpdater.setFeedURL({ url })
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension, REACT_DEVELOPER_TOOLS

@@ -12,8 +12,7 @@ function formatDate(date) {
 async function testConnection(settings) {
   console.log('Connecting to ', settings.network.address, settings.network.port)
 
-  device = new escpos.Network(settings.network.address, settings.network.port)
-  printer = new escpos.Printer(device)
+  let device = new escpos.Network(settings.network.address, settings.network.port)
 
   return new Promise((resolve, reject) => {
     device.open(function (error) {

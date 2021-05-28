@@ -12,7 +12,7 @@ const initSettings = {
   city: 'Città Pizzeria',
   cap: 'Cap Pizzeria',
   phone: 'Telefono Pizzeria',
-  network: { address: '127.0.0.1', port: 9100 }
+  network: { address: '255.255.255.1', port: 9100 }
 }
 
 const { generateReceipt, testConnection } = require('./generate-receipt.js')
@@ -32,12 +32,12 @@ contextBridge.exposeInMainWorld('api', {
 
     let joinedList = []
 
-    for (order of orderList) {
+    for (let order of orderList) {
       let customer = await customers.findOne({ _id: order.customer })
 
       let items = []
 
-      for (item of order.items) {
+      for (let item of order.items) {
         let currentItem = await dishItems.findOne({ _id: item.dish })
         items.concat([currentItem])
       }
@@ -96,7 +96,7 @@ contextBridge.exposeInMainWorld('api', {
           updatedAt: new Date()
         }
       )
-      return { customer: newCustomer, ...order }
+      return { ...order, customer: newCustomer }
     } else {
       let result = await orders.insert({
         ...order,
@@ -105,7 +105,7 @@ contextBridge.exposeInMainWorld('api', {
         customer: newCustomer._id,
         createdAt: new Date()
       })
-      return { customer: newCustomer, ...order, _id: result._id }
+      return { ...order, customer: newCustomer, _id: result._id }
     }
   },
   getDishById: async (id) => {
@@ -150,7 +150,7 @@ contextBridge.exposeInMainWorld('api', {
     let dishList = []
     let total = 0
 
-    for (item of currentOrder.items) {
+    for (let item of currentOrder.items) {
       let currentItem = await dishItems.findOne({ _id: item.dish })
       dishList = dishList.concat([
         {
