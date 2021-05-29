@@ -1,8 +1,9 @@
-const { app, BrowserWindow, autoUpdater, dialog } = require('electron')
+const { app, BrowserWindow, autoUpdater, dialog, ipcMain } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
+const api = require('./lib/db').api
 
-const server = 'https://hazel-jcj4avfmk-mancioshell.vercel.app'
+const server = 'https://hazel-27923t225-mancioshell.vercel.app'
 const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
 // Conditionally include the dev tools installer to load React Dev Tools
@@ -52,7 +53,7 @@ function createWindow() {
     width: 1920,
     height: 1080,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'lib', 'preload.js')
     },
     icon: __dirname + '/favicon.ico'
   })
@@ -82,6 +83,10 @@ app.whenReady().then(() => {
     installExtension(REACT_DEVELOPER_TOOLS)
       .then((name) => console.log(`Added Extension:  ${name}`))
       .catch((error) => console.log(`An error occurred: , ${error}`))
+  }
+
+  for (let apiName of Object.keys(api)) {
+    ipcMain.handle(apiName, async (event, args) => api[apiName](args))
   }
 
   app.on('activate', () => {
