@@ -5,6 +5,8 @@ import DishList from '../components/DishList'
 
 import { useParams, useHistory } from 'react-router-dom'
 
+import BlockUi from 'react-block-ui'
+
 const initOrder = {
   customer: {
     name: '',
@@ -26,6 +28,7 @@ function Order() {
   const [order, setOrder] = useState(initOrder)
   const [dishItems, setDishItems] = useState([])
   const [total, setTotal] = useState([])
+  const [isPrinting, setIsPrinting] = useState(false)
 
   useEffect(() => {
     const getCurrentOrder = async () => {
@@ -51,8 +54,15 @@ function Order() {
     getCurrentOrder()
   }, [])
 
-  const printReceipt = () => {
-    window?.api?.printReceipt(order)
+  const printReceipt = async () => {    
+    try {
+      setIsPrinting(true)
+      await window?.api?.printReceipt(order)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsPrinting(false)
+    }
   }
 
   const orderList = (e) => {
@@ -61,73 +71,75 @@ function Order() {
   }
 
   return (
-    <Card border="secondary">
-      <Card.Header as="h5">
-        {' '}
-        <i className="fas fa-pizza-slice"></i> Ordine Numero: {order._id}
-      </Card.Header>
-      <Card.Body>
-        <Card.Title>
-          {order.customer.name} {order.customer.surname}
-        </Card.Title>
-        {order.booking ? (
-          <Card.Subtitle className="mb-2 text-muted">
-            Prenotazione
-          </Card.Subtitle>
-        ) : null}
+    <BlockUi blocking={isPrinting}>
+      <Card border="secondary">
+        <Card.Header as="h5">
+          {' '}
+          <i className="fas fa-pizza-slice"></i> Ordine Numero: {order._id}
+        </Card.Header>
+        <Card.Body>
+          <Card.Title>
+            {order.customer.name} {order.customer.surname}
+          </Card.Title>
+          {order.booking ? (
+            <Card.Subtitle className="mb-2 text-muted">
+              Prenotazione
+            </Card.Subtitle>
+          ) : null}
 
-        <Card.Text className="mt-4">
-          <strong>Indirizzo:</strong> {order.customer.address}
-        </Card.Text>
-        <Card.Text>
-          <strong>Reacapito Telefonico:</strong> {order.customer.phone}
-        </Card.Text>
+          <Card.Text className="mt-4">
+            <strong>Indirizzo:</strong> {order.customer.address}
+          </Card.Text>
+          <Card.Text>
+            <strong>Reacapito Telefonico:</strong> {order.customer.phone}
+          </Card.Text>
 
-        {order.booking ? (
-          <>
-            <Card.Text>
-              <strong>Data Prenotazione:</strong>{' '}
-              {order.date.toLocaleDateString()}
-            </Card.Text>
-
-            <Card.Text>
-              <strong>Orario Prenotazione:</strong> {order.time}
-            </Card.Text>
-          </>
-        ) : null}
-
-        <hr />
-
-        <Card.Text>
-          <strong>Note:</strong> {order.notes}
-        </Card.Text>
-
-        <Card.Text as="h4" className="mt-5">
-          <strong>Riepilogo Ordine:</strong>
-        </Card.Text>
-
-        <DishList items={dishItems}></DishList>
-
-        <Row>
-          <Col>
-            <span className="float-right">
-              <Card.Text className="float-right">
-                <strong>Importo da Pagare: </strong> &#8364; {total}
+          {order.booking ? (
+            <>
+              <Card.Text>
+                <strong>Data Prenotazione:</strong>{' '}
+                {order.date.toLocaleDateString()}
               </Card.Text>
-            </span>
-          </Col>
-        </Row>
 
-        <hr />
+              <Card.Text>
+                <strong>Orario Prenotazione:</strong> {order.time}
+              </Card.Text>
+            </>
+          ) : null}
 
-        <Button className="mr-2 mb-2" variant="info" onClick={printReceipt}>
-          <i className="fas fa-print"></i> Stampa{' '}
-        </Button>
-        <Button className="mr-2 mb-2" variant="primary" onClick={orderList}>
-          <i className="fas fa-clipboard-list"></i> Lista Ordini{' '}
-        </Button>
-      </Card.Body>
-    </Card>
+          <hr />
+
+          <Card.Text>
+            <strong>Note:</strong> {order.notes}
+          </Card.Text>
+
+          <Card.Text as="h4" className="mt-5">
+            <strong>Riepilogo Ordine:</strong>
+          </Card.Text>
+
+          <DishList items={dishItems}></DishList>
+
+          <Row>
+            <Col>
+              <span className="float-right">
+                <Card.Text className="float-right">
+                  <strong>Importo da Pagare: </strong> &#8364; {total}
+                </Card.Text>
+              </span>
+            </Col>
+          </Row>
+
+          <hr />
+
+          <Button className="mr-2 mb-2" variant="info" onClick={printReceipt}>
+            <i className="fas fa-print"></i> Stampa{' '}
+          </Button>
+          <Button className="mr-2 mb-2" variant="primary" onClick={orderList}>
+            <i className="fas fa-clipboard-list"></i> Lista Ordini{' '}
+          </Button>
+        </Card.Body>
+      </Card>
+    </BlockUi>
   )
 }
 
