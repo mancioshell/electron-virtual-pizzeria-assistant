@@ -63,7 +63,6 @@ function CustomerTableList({ customerList, updateCustomer, createOrder }) {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     setGlobalFilter,
     previousPage,

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.2.0...v1.2.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* lgtm warning fixed ([45a22fa](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/45a22fab8acb5812d9dcd15ee15ab202318f1b09))
+
 ## [1.2.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.1.1...v1.2.0) (2021-05-28)
 
 

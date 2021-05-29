@@ -39,7 +39,7 @@ contextBridge.exposeInMainWorld('api', {
 
       for (let item of order.items) {
         let currentItem = await dishItems.findOne({ _id: item.dish })
-        items.concat([currentItem])
+        items = items.concat([currentItem])
       }
 
       joinedList = joinedList.concat([{ ...order, customer, items }])
