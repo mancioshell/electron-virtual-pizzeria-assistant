@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 
+import BlockUi from 'react-block-ui'
+
 const schema = yup
   .object()
   .shape({
@@ -319,16 +321,18 @@ function SettingsForm({ settings, saveSettings }) {
         saveSettings(values, resetForm(actions))
       }}>
       {(formik) => (
-        <Form noValidate onSubmit={formik.handleSubmit}>
-          <CompanyInputForm></CompanyInputForm>
-          <SettingsInputForm></SettingsInputForm>
+        <BlockUi tag="div" blocking={formik.isSubmitting}>
+          <Form noValidate onSubmit={formik.handleSubmit}>
+            <CompanyInputForm></CompanyInputForm>
+            <SettingsInputForm></SettingsInputForm>
 
-          <hr className="mt-2"></hr>
+            <hr className="mt-2"></hr>
 
-          <Button className="mr-3" variant="primary" type="submit">
-            <i className="fas fa-save"></i> Salva
-          </Button>
-        </Form>
+            <Button className="mr-3" variant="primary" type="submit">
+              <i className="fas fa-save"></i> Salva
+            </Button>
+          </Form>
+        </BlockUi>
       )}
     </Formik>
   )

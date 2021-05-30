@@ -6,10 +6,13 @@ import { Alert, Button } from 'react-bootstrap'
 
 import { useHistory } from 'react-router-dom'
 
+import BlockUi from 'react-block-ui'
+
 function OrderList() {
   const history = useHistory()
 
   const [orderList, setOrderList] = useState([])
+  const [isPrinting, setIsPrinting] = useState(false)
 
   useEffect(() => {
     const getOrderList = async () => {
@@ -42,7 +45,14 @@ function OrderList() {
   }
 
   const printReceipt = async (order) => {
-    await window?.api?.printReceipt(order)
+    try {
+      setIsPrinting(true)
+      await window?.api?.printReceipt(order)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsPrinting(false)
+    }
   }
 
   return (
@@ -53,12 +63,14 @@ function OrderList() {
       </h1>
 
       {orderList.length > 0 ? (
-        <OrderTableList
-          orderList={orderList}
-          updateOrder={updateOrder}
-          removeOrder={removeOrder}
-          readOrder={readOrder}
-          printReceipt={printReceipt}></OrderTableList>
+        <BlockUi blocking={isPrinting}>
+          <OrderTableList
+            orderList={orderList}
+            updateOrder={updateOrder}
+            removeOrder={removeOrder}
+            readOrder={readOrder}
+            printReceipt={printReceipt}></OrderTableList>
+        </BlockUi>
       ) : (
         <Alert variant="primary" className="mt-5">
           <Alert.Heading>Nessun ordine è stato ancora aggiunto</Alert.Heading>
