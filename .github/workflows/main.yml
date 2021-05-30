@@ -1,0 +1,15 @@
+name: Create a Github Release for Windows
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Extract tag name
+        id: tag
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            return context.payload.ref.replace(/\/refs\/tags\//, '');
+      - name: Echo
+        run: echo ${{ steps.tag.outputs.result }}
