@@ -1,0 +1,56 @@
+name: Publish new Tag
+on: workflow_dispatch
+jobs:
+  publish-tag:
+    name: Publish Tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PUSH_TAGS_TOKEN }}
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Install and Test
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: yarn install
+      - run: yarn test:coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}    
+
+      - name: Expose git commit data
+        uses: rlespinasse/git-commit-data-action@v1.x  
+
+      - name: Standard Version Release
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: git config --global user.email "${{ env.GIT_COMMIT_AUTHOR_EMAIL }}"
+      - run: git config --global user.name "${{ env.GIT_COMMIT_AUTHOR_NAME }}"
+      - run: yarn release
+        env:
+          CI: false
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PUSH_TAGS_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
+ 
+    #   - name: 'Get Current Tag'
+    #     id: current_tag
+    #     uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+    #   - uses: jungwinter/split@v1
+    #     id: split
+    #     with:
+    #       msg: ${{ steps.current_tag.outputs.tag }}
+    #       seperator: v
+    # outputs:
+    #   tag: ${{ steps.split.outputs._1 }} 
