@@ -1,0 +1,49 @@
+# on:
+#   push:
+#     # Sequence of patterns matched against refs/heads
+#     branches:
+#       - "releases/**"
+
+name: Manually triggered workflow
+on: workflow_dispatch
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: yarn install
+      - run: yarn build
+        env:
+          CI: false
+      - run: yarn test:coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Make
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: yarn make
+
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            out/make/squirrel.windows/x64/RELEASES
+            out/make/squirrel.windows/x64/VirtualPizzeriaAssistant-${{ steps.package-version.outputs.current-version}}-full.nupkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
