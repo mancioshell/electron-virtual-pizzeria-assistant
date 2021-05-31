@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.3.0...v1.4.0) (2021-05-31)
+
+
+### Features
+
+* added app version in footer component ([ce3194d](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/ce3194d01fbea5f5e6e1271deaa3c1a44369aa89))
+
 ## [1.3.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.2.1...v1.3.0) (2021-05-31)
 
 
