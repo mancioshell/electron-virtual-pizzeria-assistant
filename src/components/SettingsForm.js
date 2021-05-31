@@ -117,9 +117,9 @@ function SettingsInputForm() {
           <Button
             className="mr-3 mt-3"
             variant={
-              connection || loading
+              !connection || loading
                 ? 'primary'
-                : connection
+                : connection //lgtm [js/trivial-conditional]
                 ? 'success'
                 : 'danger'
             }
@@ -139,7 +139,7 @@ function SettingsInputForm() {
             ) : (
               <>
                 <i className="fas fa-wifi"></i> Test{' '}
-                {connection || loading ? '' : connection ? 'Ok' : 'Fallito'}
+                {!connection || loading ? '' : connection ? 'Ok' : 'Fallito' /*lgtm [js/trivial-conditional]*/} 
               </>
             )}
           </Button>
