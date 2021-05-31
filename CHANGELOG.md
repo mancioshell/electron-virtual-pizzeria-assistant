@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.2.1...v1.3.0) (2021-05-31)
+
+
+### Features
+
+* **block-ui:** added block-ui dep to block form ui on remote action ([4f39013](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/4f39013709bab1ba39ed966e154f855ccbc702b7))
+
+
+### Bug Fixes
+
+* **database:** move db folder to userData to fix data loss on app updates ([87b7267](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/87b72678a089aa2028913ccaa11912258819e811))
+
 ### [1.2.1](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.2.0...v1.2.1) (2021-05-28)
 
 
