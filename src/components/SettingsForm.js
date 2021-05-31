@@ -117,7 +117,7 @@ function SettingsInputForm() {
           <Button
             className="mr-3 mt-3"
             variant={
-              connection === undefined || loading
+              connection || loading
                 ? 'primary'
                 : connection
                 ? 'success'
@@ -139,11 +139,7 @@ function SettingsInputForm() {
             ) : (
               <>
                 <i className="fas fa-wifi"></i> Test{' '}
-                {connection === undefined || loading
-                  ? ''
-                  : connection
-                  ? 'Ok'
-                  : 'Fallito'}
+                {connection || loading ? '' : connection ? 'Ok' : 'Fallito'}
               </>
             )}
           </Button>
