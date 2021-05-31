@@ -26,7 +26,7 @@ function createAutoUpdater() {
   autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     const dialogOpts = {
       type: 'info',
-      buttons: ['Riavvia', 'Rimanda'],
+      buttons: ['Riavvia', 'Ricordamelo più tardi'],
       title: 'Aggiornamento Applicazione',
       message: process.platform === 'win32' ? releaseNotes : releaseName,
       detail:
@@ -88,6 +88,8 @@ app.whenReady().then(() => {
   for (let apiName of Object.keys(api)) {
     ipcMain.handle(apiName, async (event, args) => api[apiName](args))
   }
+
+  ipcMain.handle('getAppVersion', async (event, args) => app.getVersion())
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
