@@ -37,7 +37,7 @@ function DishList() {
     <div className="mt-4">
       <h1>
         {' '}
-        <i className="fas fa-users"></i> Lista Portate{' '}
+        <i className="fas fa-pizza-slice"></i> Lista Portate{' '}
       </h1>
 
       {dishList.length > 0 ? (
