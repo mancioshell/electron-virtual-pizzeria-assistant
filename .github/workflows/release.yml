@@ -49,11 +49,10 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: v${{ needs.publish-tag.outputs.tag }}
-          tag_name: v${{ needs.publish-tag.outputs.tag }}
           files: |
             out/make/squirrel.windows/x64/RELEASES
             out/make/squirrel.windows/x64/VirtualPizzeriaAssistant-${{ needs.extract-tag.outputs.tag }}-full.nupkg
+            out/make/squirrel.windows/x64/VirtualPizzeriaAssistantInstaller.exe
           body: ${{ steps.extract-release-notes.outputs.release_notes }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
