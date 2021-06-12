@@ -86,7 +86,9 @@ app.whenReady().then(() => {
   }
 
   for (let apiName of Object.keys(api)) {
-    ipcMain.handle(apiName, async (event, args) => api[apiName](args))
+    ipcMain.handle(apiName, async (event, arg0, arg1) =>
+      api[apiName](arg0, arg1)
+    )
   }
 
   ipcMain.handle('getAppVersion', async (event, args) => app.getVersion())

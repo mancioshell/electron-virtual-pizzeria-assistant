@@ -18,7 +18,8 @@ const initSettings = {
   network: { address: '255.255.255.1', port: 9100 }
 }
 
-const { generateReceipt, testConnection } = require('./generate-receipt.js')
+const { generateReceipt, testConnection } = require('./generate-receipt')
+const { getTotalIncome } = require('./generate-date')
 
 module.exports.api = {
   insertSettings: async (newSettings) => {
@@ -167,5 +168,26 @@ module.exports.api = {
     currentOrder = { ...currentOrder, items: dishList, customer, total }
 
     await generateReceipt(currentOrder, currentSettings)
+  },
+  getTotalIncomeByType: async (date, type) => {
+    let orderList = await orders.find()
+
+    let orderDayList = []
+
+    for (let order of orderList) {
+      let total = 0
+
+      for (let item of order.items) {
+        let currentItem = await dishItems.findOne({ _id: item.dish })
+        total += item.amount * currentItem.price
+      }
+      orderDayList = orderDayList.concat([
+        { date: order.date.toISOString().split('T')[0], total }
+      ])
+    }
+
+    return getTotalIncome(date, type, orderDayList).map(
+      ({ date, ...rest }) => ({ ...rest, date: new Date(date) })
+    )
   }
 }

@@ -20,7 +20,9 @@ contextBridge.exposeInMainWorld('api', {
   getDishList: async (dish) => ipcRenderer.invoke('getDishList', dish),
   testConnection: async () => ipcRenderer.invoke('testConnection'),
   printReceipt: async (order) => ipcRenderer.invoke('printReceipt', order),
-  getAppVersion: async () => ipcRenderer.invoke('getAppVersion')
+  getAppVersion: async () => ipcRenderer.invoke('getAppVersion'),
+  getTotalIncomeByType: async (date, type) =>
+    ipcRenderer.invoke('getTotalIncomeByType', date, type)
 })
 
 window.addEventListener('DOMContentLoaded', () => {
