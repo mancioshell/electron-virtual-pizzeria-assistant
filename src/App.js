@@ -21,13 +21,15 @@ import { InsertDish } from './pages/InsertDishItem'
 import { InsertSettings } from './pages/InsertSettings'
 import { DishList } from './pages/DishList'
 import { UIContext } from './context/UIContext'
+import { Statistics } from './pages/Statistics'
+
 import { SettingsContext, initSettings } from './context/SettingsContext'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import 'react-block-ui/style.css';
+import 'react-block-ui/style.css'
 
 import './App.css'
 
@@ -122,6 +124,10 @@ function App() {
                     }}>
                     <InsertSettings />
                   </SettingsContext.Provider>
+                </Route>
+
+                <Route path="/statistics">
+                  <Statistics />
                 </Route>
 
                 <Redirect to="/insert-order" />
