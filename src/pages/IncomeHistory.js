@@ -10,7 +10,7 @@ const label = {
   month: 'Incasso del Mese'
 }
 
-function Statistics() {
+function IncomeHistory() {
   const [incomeType, setIncomeType] = useState('day')
   const [date, setDate] = useState(new Date())
   const [income, setIncome] = useState(0)
@@ -68,6 +68,6 @@ function Statistics() {
   )
 }
 
-export { Statistics }
+export { IncomeHistory }
 
-export default Statistics
+export default IncomeHistory

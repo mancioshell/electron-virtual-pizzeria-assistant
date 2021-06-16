@@ -25,7 +25,8 @@
     "release": "env HUSKY_SKIP_HOOKS=1 standard-version --commit-all",
     "platform": "run-script-os",
     "platform:win32": "echo 'Skipping this hook in Windows platform'",
-    "platform:nix": "exec < /dev/tty && git cz --hook || true"
+    "platform:nix": "exec < /dev/tty && git cz --hook || true",
+    "prepare": "husky install"
   },
   "author": "Alessandro Mancini <dott.alessandro.mancini@gmail.com>",
   "license": "ISC",
