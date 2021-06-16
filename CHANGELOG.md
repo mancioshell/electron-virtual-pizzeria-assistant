@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.4.0...v1.5.0) (2021-06-16)
+
+
+### Features
+
+* added income history with d3 interactive diagram ([c111ee1](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/c111ee171bca329d4953afe08136c59c98c16fdb))
+
+
+### Bug Fixes
+
+* fixed lgtm warning on SettingsForm component ([4e88ea0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/4e88ea04832c37c1a764af833616b52dac4ba0be))
+* **dishlist:** changed header icon to pizza ([fa6e8ce](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/fa6e8ce3ea8938ad8900c0383d1315fe53a49b7b))
+* fixed lgtm warning on SettingsForm component ([2d97bcd](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/2d97bcd13930a2378bb8a498f752f28c7d1a5062))
+
 ## [1.4.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.3.0...v1.4.0) (2021-05-31)
 
 
