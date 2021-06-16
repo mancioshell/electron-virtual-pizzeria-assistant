@@ -35,7 +35,7 @@ function IncomeHistory() {
       setIncome(currentItem.total)
     }
 
-    getData()
+    getData().catch(console.error)
   }, [incomeType, date])
 
   return (
