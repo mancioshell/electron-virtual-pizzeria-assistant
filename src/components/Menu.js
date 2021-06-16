@@ -93,8 +93,8 @@ function Menu() {
           </Nav.Item>
 
           <Nav.Item>
-            <LinkContainer to="/statistics">
-              <Nav.Link eventKey="statistics">
+            <LinkContainer to="/income-history">
+              <Nav.Link eventKey="income-history">
                 <i className="fas fa-euro-sign"></i> Storico Incassi
               </Nav.Link>
             </LinkContainer>
