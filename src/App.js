@@ -21,7 +21,7 @@ import { InsertDish } from './pages/InsertDishItem'
 import { InsertSettings } from './pages/InsertSettings'
 import { DishList } from './pages/DishList'
 import { UIContext } from './context/UIContext'
-import { Statistics } from './pages/Statistics'
+import { IncomeHistory } from './pages/IncomeHistory'
 
 import { SettingsContext, initSettings } from './context/SettingsContext'
 
@@ -126,8 +126,8 @@ function App() {
                   </SettingsContext.Provider>
                 </Route>
 
-                <Route path="/statistics">
-                  <Statistics />
+                <Route path="/income-history">
+                  <IncomeHistory />
                 </Route>
 
                 <Redirect to="/insert-order" />
