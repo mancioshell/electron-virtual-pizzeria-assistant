@@ -15,10 +15,16 @@ const initSettings = {
   city: 'Città Pizzeria',
   cap: 'Cap Pizzeria',
   phone: 'Telefono Pizzeria',
+  choice: 'network',
+  usb: '',
   network: { address: '255.255.255.1', port: 9100 }
 }
 
-const { generateReceipt, testConnection } = require('./generate-receipt')
+const {
+  generateReceipt,
+  testConnection,
+  findUSBPrinter
+} = require('./generate-receipt')
 const { getTotalIncome } = require('./generate-date')
 
 module.exports.api = {
@@ -143,6 +149,9 @@ module.exports.api = {
   testConnection: async () => {
     let currentSettings = await settings.findOne({ id: 'settings' })
     await testConnection(currentSettings)
+  },
+  findUSBPrinter: async () => {
+    return findUSBPrinter()
   },
   printReceipt: async (order) => {
     let currentSettings = await settings.findOne({ id: 'settings' })
