@@ -1,7 +1,7 @@
 # Electron Pizzeria Assistant
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/mancioshell/electron-virtual-pizzeria-assistant.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mancioshell/electron-virtual-pizzeria-assistant/alerts/)
-[![Coverage Status](https://coveralls.io/repos/github/mancioshell/electron-virtual-pizzeria-assistant/badge.svg?branch=feature/block-ui)](https://coveralls.io/github/mancioshell/electron-virtual-pizzeria-assistant?branch=feature/block-ui)
+[![Coverage Status](https://coveralls.io/repos/github/mancioshell/electron-virtual-pizzeria-assistant/badge.svg?branch=master)](https://coveralls.io/github/mancioshell/electron-virtual-pizzeria-assistant?branch=master)
 
 This is an Electron app to assist manage orders for a pizzeria shop
 

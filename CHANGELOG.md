@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.5.0...v1.6.0) (2021-06-18)
+
+
+### Features
+
+* added support to usb thermal printer ([fa00623](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/commit/fa00623ba1c12d0f972d798b187a2af5e396f2ec))
+
 ## [1.5.0](https://github.com/mancioshell/electron-virtual-pizzeria-assistant/compare/v1.4.0...v1.5.0) (2021-06-16)
 
 
