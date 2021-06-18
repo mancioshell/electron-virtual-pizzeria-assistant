@@ -19,6 +19,7 @@ contextBridge.exposeInMainWorld('api', {
   removeDish: async (dish) => ipcRenderer.invoke('removeDish', dish),
   getDishList: async (dish) => ipcRenderer.invoke('getDishList', dish),
   testConnection: async () => ipcRenderer.invoke('testConnection'),
+  findUSBPrinter: async () => ipcRenderer.invoke('findUSBPrinter'),
   printReceipt: async (order) => ipcRenderer.invoke('printReceipt', order),
   getAppVersion: async () => ipcRenderer.invoke('getAppVersion'),
   getTotalIncomeByType: async (date, type) =>

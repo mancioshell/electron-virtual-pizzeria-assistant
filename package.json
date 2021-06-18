@@ -66,6 +66,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "escpos": "^3.0.0-alpha.6",
     "escpos-network": "^3.0.0-alpha.5",
+    "escpos-usb": "^3.0.0-alpha.4",
     "formik": "^2.2.6",
     "moment": "^2.29.1",
     "nedb-promises": "^4.1.2",

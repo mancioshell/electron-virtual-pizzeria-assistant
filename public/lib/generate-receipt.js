@@ -1,5 +1,6 @@
 const escpos = require('escpos')
 escpos.Network = require('escpos-network')
+escpos.USB = require('escpos-usb')
 
 function formatDate(date) {
   const day = date.getDate()
@@ -12,7 +13,10 @@ function formatDate(date) {
 async function testConnection(settings) {
   console.log('Connecting to ', settings.network.address, settings.network.port)
 
-  let device = new escpos.Network(settings.network.address, settings.network.port)
+  let device = new escpos.Network(
+    settings.network.address,
+    settings.network.port
+  )
 
   return new Promise((resolve, reject) => {
     device.open(function (error) {
@@ -23,14 +27,35 @@ async function testConnection(settings) {
   })
 }
 
+async function findUSBPrinter() {
+  const data = escpos.USB.findPrinter().map((device) => ({
+    label: `${device.deviceDescriptor.idVendor}-${device.deviceDescriptor.idProduct}`,
+    value: `${device.deviceDescriptor.idVendor};${device.deviceDescriptor.idProduct}`
+  }))
+  return data
+}
+
 async function generateReceipt(order, settings) {
   const options = { encoding: 'utf-8', width: 32 }
 
   let device, printer
 
-  console.log('Connecting to ', settings.network.address, settings.network.port)
+  if (settings.choice === 'network') {
+    console.log(
+      'Connecting to ',
+      settings.network.address,
+      settings.network.port
+    )
 
-  device = new escpos.Network(settings.network.address, settings.network.port)
+    device = new escpos.Network(settings.network.address, settings.network.port)
+  } else {
+    const vid = settings.usb.split(';')[0]
+    const pid = settings.usb.split(';')[1]
+    console.log('Connecting to ', vid, pid)
+
+    device = new escpos.USB(vid, pid)
+  }
+
   printer = new escpos.Printer(device, options)
 
   return new Promise((resolve, reject) => {
@@ -111,7 +136,7 @@ async function generateReceipt(order, settings) {
         .newLine()
         .text(`Questo scontrino non ha validita' fiscale`)
 
-      printer.newLine().close()
+      printer.newLine().newLine().newLine().newLine().newLine().close()
 
       return resolve('Receipt printed')
     })
@@ -120,5 +145,6 @@ async function generateReceipt(order, settings) {
 
 module.exports = {
   generateReceipt,
-  testConnection
+  testConnection,
+  findUSBPrinter
 }

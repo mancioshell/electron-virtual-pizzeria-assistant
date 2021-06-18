@@ -11,11 +11,17 @@ let settings = {
   city: '',
   cap: '',
   phone: '',
+  choice: 'network',
   network: { address: '', port: '' }
 }
 let saveSettings
 
+const data = [{ label: '1234-2343', value: '1234;2343' }]
+
 beforeEach(() => {
+  window.api = {
+    findUSBPrinter: jest.fn().mockImplementation(async () => data)
+  }
   saveSettings = jest.fn()
 })
 
@@ -23,7 +29,7 @@ afterEach(() => {
   saveSettings.mockRestore()
 })
 
-test('rendering and submitting a SettingsForm', async () => {
+test('rendering and submitting with network printer a SettingsForm', async () => {
   render(<SettingsForm settings={settings} saveSettings={saveSettings} />)
 
   userEvent.type(screen.getByLabelText(/Nome Pizzeria/), 'La Pinseria JG')
@@ -44,8 +50,49 @@ test('rendering and submitting a SettingsForm', async () => {
         city: 'Roma',
         cap: '00146',
         phone: '06 3432423',
+        choice: 'network',
         network: {
           address: '192.168.1.231',
+          port: 9100
+        },
+        usb: ''
+      },
+      expect.anything()
+    )
+  })
+})
+
+test('rendering and submitting with usb printer a SettingsForm', async () => {
+  render(<SettingsForm settings={settings} saveSettings={saveSettings} />)
+
+  userEvent.type(screen.getByLabelText(/Nome Pizzeria/), 'La Pinseria JG')
+  userEvent.type(screen.getByLabelText(/Indirizzo \*/), 'Via Lari 19')
+  userEvent.type(screen.getByLabelText(/Città/), 'Roma')
+  userEvent.type(screen.getByLabelText(/Cap/), '00146')
+  userEvent.type(screen.getByLabelText(/Telefono/), '06 3432423')
+
+  userEvent.click(screen.getByTestId('custom-radio-usb'))
+
+  await waitFor(() => {
+    screen.getAllByTestId('usb-printer-options')
+  })
+
+  userEvent.selectOptions(screen.getByLabelText(/Stampante/), '1234;2343')
+
+  userEvent.click(screen.getByRole('button', { name: /Salva/ }))
+
+  await waitFor(() => {
+    expect(saveSettings).toHaveBeenCalledWith(
+      {
+        name: 'La Pinseria JG',
+        address: 'Via Lari 19',
+        city: 'Roma',
+        cap: '00146',
+        phone: '06 3432423',
+        choice: 'usb',
+        usb: '1234;2343',
+        network: {
+          address: '',
           port: 9100
         }
       },
