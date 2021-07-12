@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react'
 import OrderTableList from '../components/OrderTableList'
 
 import { Alert, Button } from 'react-bootstrap'
-
 import { useHistory } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next'
 import BlockUi from 'react-block-ui'
 
 function OrderList() {
   const history = useHistory()
+  const { t } = useTranslation(['order-list'])
 
   const [orderList, setOrderList] = useState([])
   const [isPrinting, setIsPrinting] = useState(false)
@@ -59,7 +59,7 @@ function OrderList() {
     <div className="mt-4">
       <h1>
         {' '}
-        <i className="fas fa-clipboard-list"></i> Lista Ordini{' '}
+        <i className="fas fa-clipboard-list"></i> {t('title')}
       </h1>
 
       {orderList.length > 0 ? (
@@ -73,13 +73,13 @@ function OrderList() {
         </BlockUi>
       ) : (
         <Alert variant="primary" className="mt-5">
-          <Alert.Heading>Nessun ordine è stato ancora aggiunto</Alert.Heading>
-          <p>Clicca sul pulsante in basso per aggiungere un nuovo ordine.</p>
+          <Alert.Heading>{t('alert-heading')}</Alert.Heading>
+          <p>{t('alert-body')}</p>
 
           <hr />
           <div className="d-flex justify-content-end">
             <Button onClick={insertOrder} variant="outline-primary">
-              <i className="fas fa-plus"></i> Nuovo Ordine
+              <i className="fas fa-plus"></i> {t('alert-button')}
             </Button>
           </div>
         </Alert>

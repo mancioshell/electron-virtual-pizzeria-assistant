@@ -1,0 +1,17 @@
+{
+    "label":{
+        "search-customer": "Ricerca Cliente",
+        "customer-per-page": "Clienti per pagina"
+    },
+    "columns": {
+        "name": "Nome",
+        "surname": "Cognome",
+        "address": "Indirizzo",
+        "phone": "Recapito Telefonico",
+        "actions": "Azioni"
+    },
+    "button": {
+        "create": "Crea Ordine",
+        "modify": "Modifica"
+    }
+}

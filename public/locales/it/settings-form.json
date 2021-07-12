@@ -1,0 +1,55 @@
+{
+  "thermal-printer": {
+    "label": "Connessione Stampante Termica",
+    "address": {
+      "label": "Indirizzo IP",
+      "placeholder": "Inserisci l'indirizzo ip del POS",
+      "feedback": "L'indirizzo IP è obbligatorio"
+    },
+    "port": {
+      "label": "Porta",
+      "placeholder": "Inserisci la porta del POS",
+      "feedback": "La porta è obbligatoria"
+    },
+    "printer": {
+      "label": "Stampante",
+      "placeholder": "Seleziona la stampante ...",
+      "feedback": "La selezione della stampante è obbligatoria"
+    }
+  },
+  "network": {
+    "test": "Test...",
+    "connection": "Connessione...",
+    "success": "Ok",
+    "failed": "Fallito"
+  },
+  "company": {
+    "label": "Azienda",
+    "pizzeria": {
+      "label": "Nome Pizzeria",
+      "placeholder": "Inserisci il nome della pizzeria",
+      "feedback": "Il nome è obbligatorio"
+    },
+    "address": {
+      "label": "Indirizzo",
+      "placeholder": "Inserisci l'indirizzo",
+      "feedback": "L'indirizzo è obbligatorio"
+    },
+    "cap": {
+      "label": "Cap",
+      "placeholder": "Inserisci Cap",
+      "feedback": "Il Cap è obbligatorio"
+    },
+    "city": {
+      "label": "Città",
+      "placeholder": "Inserisci la città",
+      "feedback": "La Città è obbligatoria"
+    },
+    "phone": {
+      "label": "Telefono",
+      "placeholder": "Inserisci il telefono",
+      "feedback": "Il telefono è obbligatorio"
+    }
+  },
+  "button": "Salva"
+}

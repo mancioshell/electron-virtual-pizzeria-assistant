@@ -1,0 +1,18 @@
+{
+  "label": {
+    "order-number": "Ordine Numero",
+    "booking": "Prenotazione",
+    "address": "Indirizzo",
+    "phone": "Reacapito Telefonico",
+    "booking-date": "Data Prenotazione",
+    "booking-hour": "Orario Prenotazione",
+    "note": "Note",
+    "order-resume": "Riepilogo Ordine",
+    "total-income": "Importo da Pagare"
+  },
+
+  "button": {
+    "print": "Stampa",
+    "order-list": "Lista Ordini"
+  }
+}

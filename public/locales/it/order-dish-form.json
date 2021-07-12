@@ -1,0 +1,13 @@
+{
+  "dish": {
+    "label": "Portata",
+    "placeholder": "Inserisci la descrizione della portata",
+    "feedback": "La portata è obbligatoria"
+  },
+  "amount": {
+    "label": "Quantità",
+    "placeholder": "Inserisci la quantità",
+    "feedback": "Il valore deve essere maggiore di 0"
+  },
+  "button": "Rimuovi"
+}

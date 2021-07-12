@@ -1,0 +1,16 @@
+{
+  "label": {
+    "search-dish": "Ricerca Portata",
+    "dish-list-per-page": "Portate per pagina"
+  },
+  "columns": {
+    "name": "Nome",
+    "description": "Descrizione",
+    "price": "Prezzo",
+    "action": "Azioni"
+  },
+  "button": {
+    "modify": "Modifica",
+    "remove": "Rimuovi"
+  }
+}

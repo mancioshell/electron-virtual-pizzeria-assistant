@@ -9,8 +9,11 @@ import React from 'react'
 
 import TableForm from './TableForm'
 import TablePagination from './TablePagination'
+import { useTranslation } from 'react-i18next'
 
 function DishTableList({ dishList, updateDish, removeDish }) {
+  const { t } = useTranslation(['dish-table-list'])
+
   const actions = (dish) => (
     <>
       <Button
@@ -19,7 +22,7 @@ function DishTableList({ dishList, updateDish, removeDish }) {
         type="button"
         size="sm"
         onClick={() => updateDish(dish)}>
-        <i className="fas fa-pencil-alt"></i> Modifica
+        <i className="fas fa-pencil-alt"></i> {t('button.modify')}
       </Button>
       <Button
         className="mr-2 mb-2"
@@ -27,7 +30,7 @@ function DishTableList({ dishList, updateDish, removeDish }) {
         type="button"
         size="sm"
         onClick={() => removeDish(dish)}>
-        <i className="fas fa-trash"></i> Rimuovi
+        <i className="fas fa-trash"></i> {t('button.remove')}
       </Button>
     </>
   )
@@ -44,12 +47,12 @@ function DishTableList({ dishList, updateDish, removeDish }) {
 
   const columns = React.useMemo(
     () => [
-      { Header: 'Nome', accessor: 'name' },
-      { Header: 'Descrizione', accessor: 'description' },
-      { Header: 'Prezzo', accessor: 'price' },
-      { Header: 'Azioni', accessor: 'actions' }
+      { Header: t('columns.name'), accessor: 'name' },
+      { Header: t('columns.description'), accessor: 'description' },
+      { Header: t('columns.price'), accessor: 'price' },
+      { Header: t('columns.action'), accessor: 'actions' }
     ],
-    []
+    [t]
   )
 
   const tableInstance = useTable(

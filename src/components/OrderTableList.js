@@ -9,6 +9,7 @@ import React from 'react'
 
 import TableForm from './TableForm'
 import TablePagination from './TablePagination'
+import { useTranslation } from 'react-i18next'
 
 function OrderTableList({
   orderList,
@@ -17,6 +18,8 @@ function OrderTableList({
   readOrder,
   printReceipt
 }) {
+  const { t } = useTranslation(['order-table-list'])
+
   const actions = (order) => (
     <>
       <Button
@@ -25,7 +28,7 @@ function OrderTableList({
         type="button"
         size="sm"
         onClick={(e) => readOrder(e, order)}>
-        <i className="fas fa-clipboard-list"></i> Visualizza
+        <i className="fas fa-clipboard-list"></i> {t('actions.view')}
       </Button>
       <Button
         className="mr-2 mb-2"
@@ -33,7 +36,7 @@ function OrderTableList({
         type="button"
         size="sm"
         onClick={(e) => updateOrder(e, order)}>
-        <i className="fas fa-pencil-alt"></i> Modifica
+        <i className="fas fa-pencil-alt"></i> {t('actions.modify')}
       </Button>
       <Button
         className="mr-2 mb-2"
@@ -41,7 +44,7 @@ function OrderTableList({
         type="button"
         size="sm"
         onClick={(e) => printReceipt(order)}>
-        <i className="fas fa-print"></i> Stampa
+        <i className="fas fa-print"></i> {t('actions.print')}
       </Button>
       <Button
         className="mr-2 mb-2"
@@ -49,7 +52,7 @@ function OrderTableList({
         type="button"
         size="sm"
         onClick={(e) => removeOrder(e, order)}>
-        <i className="fas fa-trash"></i> Rimuovi
+        <i className="fas fa-trash"></i> {t('actions.remove')}
       </Button>
     </>
   )
@@ -72,14 +75,14 @@ function OrderTableList({
 
   const columns = React.useMemo(
     () => [
-      { Header: 'Nome', accessor: 'name' },
-      { Header: 'Cognome', accessor: 'surname' },
-      { Header: 'Indirizzo', accessor: 'address' },
-      { Header: 'Data Prenotazione', accessor: 'date' },
-      { Header: 'Ora Prenotazione', accessor: 'time' },
-      { Header: 'Azioni', accessor: 'actions' }
+      { Header: t('columns.name'), accessor: 'name' },
+      { Header: t('columns.surname'), accessor: 'surname' },
+      { Header: t('columns.address'), accessor: 'address' },
+      { Header: t('columns.booking-date'), accessor: 'date' },
+      { Header: t('columns.booking-date'), accessor: 'time' },
+      { Header: t('columns.actions'), accessor: 'actions' }
     ],
-    []
+    [t]
   )
 
   const tableInstance = useTable(
@@ -135,8 +138,8 @@ function OrderTableList({
   return (
     <>
       <TableForm
-        searchLabel="Ricerca Ordine"
-        selectLabel="Ordini per pagina"
+        searchLabel={t('label.order-search')}
+        selectLabel={t('label.order-per-page')}
         {...tableFormProps}></TableForm>
       <TablePagination
         {...tableProps}

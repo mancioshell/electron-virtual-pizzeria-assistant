@@ -8,8 +8,8 @@ import CustomerForm from '../components/CustomerForm'
 import SearchCustomerForm from '../components/SearchCustomerForm'
 
 import { useHistory } from 'react-router-dom'
-
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const SearchCustomerFormRef = React.forwardRef((props, ref) => {
   return <SearchCustomerForm {...props} forwardedRef={ref} />
@@ -28,6 +28,7 @@ function InsertCustomer() {
   const { addSuccessMessage } = useContext(UIContext)
 
   const history = useHistory()
+  const { t } = useTranslation(['insert-customer'])
 
   let { customerId } = useParams()
   const [customer, setCustomer] = useState(initCustomer)
@@ -48,8 +49,8 @@ function InsertCustomer() {
     history.push(`/insert-order`)
 
     addSuccessMessage({
-      text: 'Cliente salvato con successo',
-      type: 'Cliente',
+      text: t('success-message'),
+      type: t('success-message-title'),
       show: true
     })
   }
@@ -65,7 +66,7 @@ function InsertCustomer() {
       <header className="mt-4">
         <h1>
           {' '}
-          <i className="fas fa-pencil-alt"></i> Modifica Cliente{' '}
+          <i className="fas fa-pencil-alt"></i> {t('title')}
         </h1>
       </header>
 

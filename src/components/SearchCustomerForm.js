@@ -1,16 +1,18 @@
 import { AsyncTypeahead } from 'react-bootstrap-typeahead'
 import { Form } from 'react-bootstrap'
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function SearchCustomerForm({ forwardedRef, onChangeCustomer }) {
   const [isLoading, setIsLoading] = useState(false)
   const [customerOptionList, setCustomerOptionList] = useState([])
 
+  const { t } = useTranslation(['search-customer-form'])
+
   return (
     <Form.Group controlId="customer">
       <Form.Label>
-        {' '}
-        <b>Ricerca Cliente</b> :
+        <b>{t('label')}</b> :
       </Form.Label>
 
       <AsyncTypeahead
@@ -33,7 +35,7 @@ function SearchCustomerForm({ forwardedRef, onChangeCustomer }) {
           setCustomerOptionList(customerList)
           setIsLoading(false)
         }}
-        placeholder="Cerca il cliente ..."
+        placeholder={t('placeholder')}
         options={customerOptionList}
       />
     </Form.Group>

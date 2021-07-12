@@ -4,9 +4,11 @@ import { Alert } from 'react-bootstrap'
 import CustomerTableList from '../components/CustomerTableList'
 
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function CustomerList() {
   const history = useHistory()
+  const { t } = useTranslation(['customer-list'])
 
   const [customerList, setCustomerList] = useState([])
 
@@ -31,7 +33,7 @@ function CustomerList() {
     <div className="mt-4">
       <h1>
         {' '}
-        <i className="fas fa-users"></i> Lista Clienti{' '}
+        <i className="fas fa-users"></i> {t('title')}
       </h1>
 
       {customerList.length > 0 ? (
@@ -41,11 +43,8 @@ function CustomerList() {
           createOrder={createOrder}></CustomerTableList>
       ) : (
         <Alert variant="primary" className="mt-5">
-          <Alert.Heading>Nessun cliente è stato ancora aggiunto</Alert.Heading>
-          <p>
-            I clienti vengono aggiunti automaticamente, quando viene effettuato
-            il salvataggio di un nuovo ordine.
-          </p>
+          <Alert.Heading>{t('alert-heading')}</Alert.Heading>
+          <p>{t('alert-body')}</p>
         </Alert>
       )}
     </div>

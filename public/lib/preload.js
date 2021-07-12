@@ -1,4 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron')
+const backend = require('i18next-electron-fs-backend')
 
 contextBridge.exposeInMainWorld('api', {
   insertSettings: async (newSettings) =>
@@ -22,8 +23,10 @@ contextBridge.exposeInMainWorld('api', {
   findUSBPrinter: async () => ipcRenderer.invoke('findUSBPrinter'),
   printReceipt: async (order) => ipcRenderer.invoke('printReceipt', order),
   getAppVersion: async () => ipcRenderer.invoke('getAppVersion'),
+  getAppLocale: async () => ipcRenderer.invoke('getAppLocale'),
   getTotalIncomeByType: async (date, type) =>
-    ipcRenderer.invoke('getTotalIncomeByType', date, type)
+    ipcRenderer.invoke('getTotalIncomeByType', date, type),
+  i18nextElectronBackend: backend.preloadBindings(ipcRenderer)
 })
 
 window.addEventListener('DOMContentLoaded', () => {

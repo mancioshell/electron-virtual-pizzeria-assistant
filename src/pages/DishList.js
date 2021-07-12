@@ -4,11 +4,13 @@ import { Alert, Button } from 'react-bootstrap'
 import DishTableList from '../components/DishTableList'
 
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function DishList() {
   const history = useHistory()
+  const { t } = useTranslation(['dish-list'])
 
-  const [dishList, setDishList] = useState([])
+  const [dishList, setDishList] = useState([])  
 
   useEffect(() => {
     const getDishList = async () => {
@@ -37,7 +39,7 @@ function DishList() {
     <div className="mt-4">
       <h1>
         {' '}
-        <i className="fas fa-pizza-slice"></i> Lista Portate{' '}
+        <i className="fas fa-pizza-slice"></i> {t('title')}
       </h1>
 
       {dishList.length > 0 ? (
@@ -47,13 +49,13 @@ function DishList() {
           removeDish={removeDish}></DishTableList>
       ) : (
         <Alert variant="primary" className="mt-5">
-          <Alert.Heading>Nessuna portata è stata ancora aggiunta</Alert.Heading>
-          <p>Clicca sul pulsante in basso per aggiungere una nuova portata.</p>
+          <Alert.Heading>{t('alert-heading')}</Alert.Heading>
+          <p>{t('alert-body')}</p>
 
           <hr />
           <div className="d-flex justify-content-end">
             <Button onClick={insertDish} variant="outline-primary">
-              <i className="fas fa-plus"></i> Nuova Portata
+              <i className="fas fa-plus"></i> {t('alert-button')}
             </Button>
           </div>
         </Alert>

@@ -9,6 +9,7 @@ import OrderDishForm from './OrderDishForm'
 import { CustomerInputForm, customerSchema } from './CustomerForm'
 
 import BlockUi from 'react-block-ui'
+import { useTranslation } from 'react-i18next'
 
 import './OrderForm.css'
 
@@ -43,6 +44,8 @@ const schema = yup.object().shape({
 })
 
 function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
+  const { t } = useTranslation(['order-form'])
+
   const resetForm = (actions) => (order) => {
     actions.resetForm({ values: order })
     actions.setSubmitting(false)
@@ -67,7 +70,7 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
 
             <section className="mt-5 mb-4" id="order">
               <h3>
-                <i className="fas fa-bars"></i> Ordine
+                <i className="fas fa-bars"></i> {t('title')}
               </h3>
               <hr className="mt-2"></hr>
 
@@ -79,13 +82,13 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                         return (
                           <Form.Group controlId="booking">
                             <Form.Label>
-                              <b>Prenotazione</b>
+                              <b>{t('booking.label')}</b>
                             </Form.Label>
                             <Form.Switch
                               id="custom-switch"
                               checked={field.value}
                               {...field}
-                              label="Prenotazione"
+                              label={t('booking.label')}
                             />
                           </Form.Group>
                         )
@@ -101,7 +104,7 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                             return (
                               <Form.Group controlId="time">
                                 <Form.Label>
-                                  <b>Orario Prenotazione</b> :
+                                  <b>{t('booking.hour.label')}</b> :
                                 </Form.Label>
                                 <Form.Control
                                   type="time"
@@ -118,10 +121,10 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                                     meta.error
                                   }
                                   required
-                                  placeholder="Inserisci l'orario di prenotazione"
+                                  placeholder={t('booking.hour.placeholder')}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                  L'orario di prenotazione è obbligatorio
+                                  {t('booking.hour.feedback')}
                                 </Form.Control.Feedback>
                               </Form.Group>
                             )
@@ -135,7 +138,7 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                             return (
                               <Form.Group controlId="date">
                                 <Form.Label>
-                                  <b>Data Prenotazione</b> :
+                                  <b>{t('booking.date.label')}</b> :
                                 </Form.Label>
                                 <DatePicker
                                   required
@@ -151,13 +154,15 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                                   onChange={(date) =>
                                     form.setFieldValue('date', date)
                                   }
-                                  placeholderText="Inserisci la data di prenotazione"></DatePicker>
+                                  placeholderText={t(
+                                    'booking.date.placeholder'
+                                  )}></DatePicker>
 
                                 {form.submitCount > 0 &&
                                 meta.touched &&
                                 meta.error ? (
                                   <span className="manual-invalid-feedback">
-                                    La data di prenotazione è obbligatoria
+                                    {t('booking.date.feedback')}
                                   </span>
                                 ) : null}
                               </Form.Group>
@@ -174,7 +179,7 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                     return (
                       <Form.Group controlId="notes">
                         <Form.Label>
-                          <b>Note</b> :
+                          <b>{t('note.label')}</b> :
                         </Form.Label>
                         <Form.Control
                           as="textarea"
@@ -188,7 +193,7 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                             form.submitCount > 0 && meta.touched && meta.error
                           }
                           required
-                          placeholder="Inserisci delle note"
+                          placeholder={t('note.placeholder')}
                         />
                       </Form.Group>
                     )
@@ -203,7 +208,8 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                         <Row>
                           <Col>
                             <h4 className="mt-3">
-                              <i className="fas fa-clipboard-list"></i> Portate{' '}
+                              <i className="fas fa-clipboard-list"></i>{' '}
+                              {t('dish-list.label')}
                             </h4>
                             <hr className="mt-2"></hr>
                           </Col>
@@ -227,7 +233,8 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                                 onClick={() =>
                                   arrayHelpers.push({ dish: '', amount: 1 })
                                 }>
-                                <i className="fas fa-plus"></i> Aggiungi
+                                <i className="fas fa-plus"></i>{' '}
+                                {t('dish-list.button')}
                               </Button>
                             </span>
                           </Col>
@@ -249,7 +256,7 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                 formik.setFieldValue('confirm', 0, false)
                 formik.handleSubmit()
               }}>
-              <i className="fas fa-save"></i> Salva
+              <i className="fas fa-save"></i> {t('button.save')}
             </Button>
 
             <Button
@@ -260,7 +267,7 @@ function OrderForm({ order, saveOrder, confirmOrder, searchCustomerForm }) {
                 formik.setFieldValue('confirm', 1, false)
                 formik.handleSubmit()
               }}>
-              <i className="fas fa-check"></i> Conferma
+              <i className="fas fa-check"></i> {t('button.confirm')}
             </Button>
           </Form>
         </BlockUi>

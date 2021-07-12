@@ -6,6 +6,7 @@ import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 
 import BlockUi from 'react-block-ui'
+import { useTranslation } from 'react-i18next'
 
 const schema = yup
   .object()
@@ -41,6 +42,8 @@ function SettingsInputForm({ choice, options }) {
   const [connection, setConnection] = useState(undefined)
   const [loading, setLoading] = useState(false)
 
+  const { t } = useTranslation(['settings-form'])
+
   const testConnection = async () => {
     console.log('Connection...')
     try {
@@ -60,7 +63,7 @@ function SettingsInputForm({ choice, options }) {
     <section className="mt-5" id="settings">
       <h4>
         {' '}
-        <i className="fas fa-wifi"></i> Connessione Stampante Termica
+        <i className="fas fa-wifi"></i> {t('thermal-printer.label')}
       </h4>
       <hr />
 
@@ -107,7 +110,7 @@ function SettingsInputForm({ choice, options }) {
                 return (
                   <Form.Group controlId="network-address">
                     <Form.Label>
-                      <b>Indirizzo IP *</b> :
+                      <b>{t('thermal-printer.address.label')} *</b> :
                     </Form.Label>
                     <Form.Control
                       type="text"
@@ -120,10 +123,10 @@ function SettingsInputForm({ choice, options }) {
                         form.submitCount > 0 && meta.touched && meta.error
                       }
                       required
-                      placeholder="Inserisci l'indirizzo ip del POS"
+                      placeholder={t('thermal-printer.address.placeholder')}
                     />
                     <Form.Control.Feedback type="invalid">
-                      L'indirizzo è obbligatorio
+                      {t('thermal-printer.address.feedback')}
                     </Form.Control.Feedback>
                   </Form.Group>
                 )
@@ -137,7 +140,7 @@ function SettingsInputForm({ choice, options }) {
                 return (
                   <Form.Group controlId="port">
                     <Form.Label>
-                      <b>Porta *</b> :
+                      <b>{t('thermal-printer.port.label')} *</b> :
                     </Form.Label>
                     <Form.Control
                       type="number"
@@ -151,10 +154,10 @@ function SettingsInputForm({ choice, options }) {
                         form.submitCount > 0 && meta.touched && meta.error
                       }
                       required
-                      placeholder="Inserisci la porta del POS"
+                      placeholder={t('thermal-printer.port.placeholder')}
                     />
                     <Form.Control.Feedback type="invalid">
-                      La porta è obbligatoria
+                      {t('thermal-printer.port.feedback')}
                     </Form.Control.Feedback>
                   </Form.Group>
                 )
@@ -183,16 +186,16 @@ function SettingsInputForm({ choice, options }) {
                     role="status"
                     aria-hidden="true"
                   />{' '}
-                  Connessione...
+                  {t('network.connection')}
                 </>
               ) : (
                 <>
-                  <i className="fas fa-wifi"></i> Test{' '}
+                  <i className="fas fa-wifi"></i> {t('network.test')}
                   {connection === undefined || loading
                     ? ''
                     : connection
-                    ? 'Ok'
-                    : 'Fallito'}
+                    ? t('network.success')
+                    : t('network.failed')}
                 </>
               )}
             </Button>
@@ -206,7 +209,7 @@ function SettingsInputForm({ choice, options }) {
                 return (
                   <Form.Group controlId={`usb-printers`}>
                     <Form.Label>
-                      <b>Stampante *</b> :
+                      <b>{t('thermal-printer.printer.label')} *</b> :
                     </Form.Label>
 
                     <Form.Control
@@ -220,7 +223,7 @@ function SettingsInputForm({ choice, options }) {
                         )
                       }}
                       required
-                      placeholder="Seleziona la stampante ...">
+                      placeholder={t('thermal-printer.printer.placeholder')}>
                       <>
                         <option value=""></option>
 
@@ -235,7 +238,7 @@ function SettingsInputForm({ choice, options }) {
                       </>
                     </Form.Control>
                     <Form.Control.Feedback type="invalid">
-                      La selezione della stampante è obbligatoria
+                      {t('thermal-printer.printer.feedback')}
                     </Form.Control.Feedback>
                   </Form.Group>
                 )
@@ -249,11 +252,13 @@ function SettingsInputForm({ choice, options }) {
 }
 
 function CompanyInputForm() {
+  const { t } = useTranslation(['settings-form'])
+
   return (
     <section className="mt-5" id="settings">
       <h4>
         {' '}
-        <i className="fas fa-building"></i> Azienda{' '}
+        <i className="fas fa-building"></i> {t('company.label')}
       </h4>
       <hr />
 
@@ -264,7 +269,7 @@ function CompanyInputForm() {
               return (
                 <Form.Group controlId="name">
                   <Form.Label>
-                    <b>Nome Pizzeria *</b> :
+                    <b>{t('company.pizzeria.label')} *</b> :
                   </Form.Label>
                   <Form.Control
                     type="text"
@@ -277,10 +282,10 @@ function CompanyInputForm() {
                       form.submitCount > 0 && meta.touched && meta.error
                     }
                     required
-                    placeholder="Inserisci il nome della pizzeria"
+                    placeholder={t('company.pizzeria.placeholder')}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Il nome è obbligatorio
+                    {t('company.pizzeria.feedback')}
                   </Form.Control.Feedback>
                 </Form.Group>
               )
@@ -293,7 +298,7 @@ function CompanyInputForm() {
               return (
                 <Form.Group controlId="address">
                   <Form.Label>
-                    <b>Indirizzo *</b> :
+                    <b>{t('company.address.label')} *</b> :
                   </Form.Label>
                   <Form.Control
                     type="text"
@@ -306,10 +311,10 @@ function CompanyInputForm() {
                       form.submitCount > 0 && meta.touched && meta.error
                     }
                     required
-                    placeholder="Inserisci l'indirizzo"
+                    placeholder={t('company.address.placeholder')}
                   />
                   <Form.Control.Feedback type="invalid">
-                    L'indirizzo è obbligatorio
+                    {t('company.address.feedback')}
                   </Form.Control.Feedback>
                 </Form.Group>
               )
@@ -325,7 +330,7 @@ function CompanyInputForm() {
               return (
                 <Form.Group controlId="cap">
                   <Form.Label>
-                    <b>Cap *</b> :
+                    <b>{t('company.cap.label')} *</b> :
                   </Form.Label>
                   <Form.Control
                     type="text"
@@ -338,10 +343,10 @@ function CompanyInputForm() {
                       form.submitCount > 0 && meta.touched && meta.error
                     }
                     required
-                    placeholder="Inserisci cap"
+                    placeholder={t('company.cap.placeholder')}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Il cap è obbligatorio
+                    {t('company.cap.feedback')}
                   </Form.Control.Feedback>
                 </Form.Group>
               )
@@ -354,7 +359,7 @@ function CompanyInputForm() {
             {({ field, form, meta }) => (
               <Form.Group controlId="city">
                 <Form.Label>
-                  <b>Città *</b> :
+                  <b>{t('company.city.label')} *</b> :
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -363,10 +368,10 @@ function CompanyInputForm() {
                   isValid={form.submitCount > 0 && meta.touched && !meta.error}
                   isInvalid={form.submitCount > 0 && meta.touched && meta.error}
                   required
-                  placeholder="Inserisci la città"
+                  placeholder={t('company.city.placeholder')}
                 />
                 <Form.Control.Feedback type="invalid">
-                  La città è obbligatoria
+                  {t('company.city.feedback')}
                 </Form.Control.Feedback>
               </Form.Group>
             )}
@@ -378,7 +383,7 @@ function CompanyInputForm() {
             {({ field, form, meta }) => (
               <Form.Group controlId="phone">
                 <Form.Label>
-                  <b>Telefono *</b> :
+                  <b>{t('company.phone.label')} *</b> :
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -387,10 +392,10 @@ function CompanyInputForm() {
                   isValid={form.submitCount > 0 && meta.touched && !meta.error}
                   isInvalid={form.submitCount > 0 && meta.touched && meta.error}
                   required
-                  placeholder="Inserisci il telefono"
+                  placeholder={t('company.phone.placeholder')}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Il telefono è obbligatorio
+                  {t('company.phone.feedback')}
                 </Form.Control.Feedback>
               </Form.Group>
             )}
@@ -403,6 +408,8 @@ function CompanyInputForm() {
 
 function SettingsForm({ settings, saveSettings }) {
   const [options, setOptions] = useState([])
+
+  const { t } = useTranslation(['settings-form'])
 
   useEffect(() => {
     const getOptions = async () => {
@@ -444,7 +451,7 @@ function SettingsForm({ settings, saveSettings }) {
             <hr className="mt-2"></hr>
 
             <Button className="mr-3" variant="primary" type="submit">
-              <i className="fas fa-save"></i> Salva
+              <i className="fas fa-save"></i> {t('button')}
             </Button>
           </Form>
         </BlockUi>
