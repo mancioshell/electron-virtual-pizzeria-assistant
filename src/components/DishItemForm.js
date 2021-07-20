@@ -83,7 +83,7 @@ function DishItemInputForm() {
           return (
             <Form.Group controlId="description">
               <Form.Label>
-                <b>{t('description.name')}</b> :
+                <b>{t('description.label')}</b> :
               </Form.Label>
               <Form.Control
                 as="textarea"

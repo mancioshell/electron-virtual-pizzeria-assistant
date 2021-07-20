@@ -1,9 +1,12 @@
 import React from 'react'
 
-import { render, waitFor, screen } from '@testing-library/react'
+import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import SettingsForm from './SettingsForm'
 import userEvent from '@testing-library/user-event'
+
+import i18NextCustomRender from '../i18n.test'
+import config from '../../public/locales/it/settings-form.json'
 
 let settings = {
   name: '',
@@ -18,6 +21,9 @@ let saveSettings
 
 const data = [{ label: '1234-2343', value: '1234;2343' }]
 
+const customRender = (ui, renderOptions) =>
+  i18NextCustomRender(ui, { ...config }, renderOptions)
+
 beforeEach(() => {
   window.api = {
     findUSBPrinter: jest.fn().mockImplementation(async () => data)
@@ -30,7 +36,7 @@ afterEach(() => {
 })
 
 test('rendering and submitting with network printer a SettingsForm', async () => {
-  render(<SettingsForm settings={settings} saveSettings={saveSettings} />)
+  customRender(<SettingsForm settings={settings} saveSettings={saveSettings} />)
 
   userEvent.type(screen.getByLabelText(/Nome Pizzeria/), 'La Pinseria JG')
   userEvent.type(screen.getByLabelText(/Indirizzo \*/), 'Via Lari 19')
@@ -63,7 +69,7 @@ test('rendering and submitting with network printer a SettingsForm', async () =>
 })
 
 test('rendering and submitting with usb printer a SettingsForm', async () => {
-  render(<SettingsForm settings={settings} saveSettings={saveSettings} />)
+  customRender(<SettingsForm settings={settings} saveSettings={saveSettings} />)
 
   userEvent.type(screen.getByLabelText(/Nome Pizzeria/), 'La Pinseria JG')
   userEvent.type(screen.getByLabelText(/Indirizzo \*/), 'Via Lari 19')
@@ -102,7 +108,7 @@ test('rendering and submitting with usb printer a SettingsForm', async () => {
 })
 
 test('display an error on submitting', async () => {
-  render(<SettingsForm settings={settings} saveSettings={saveSettings} />)
+  customRender(<SettingsForm settings={settings} saveSettings={saveSettings} />)
 
   userEvent.type(screen.getByLabelText(/Nome Pizzeria/), 'La Pinseria JG')
 

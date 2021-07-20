@@ -1,12 +1,18 @@
 import React from 'react'
 
-import { render, waitFor, screen } from '@testing-library/react'
+import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import CustomerForm from './CustomerForm'
 import userEvent from '@testing-library/user-event'
 
+import i18NextCustomRender from '../i18n.test'
+import config from '../../public/locales/it/customer-form.json'
+
 let customer = { name: '', surname: '', address: '', phone: '' }
 let saveCustomer
+
+const customRender = (ui, renderOptions) =>
+  i18NextCustomRender(ui, { ...config }, renderOptions)
 
 beforeEach(() => {
   saveCustomer = jest.fn()
@@ -17,7 +23,7 @@ afterEach(() => {
 })
 
 test('rendering and submitting a CustomerForm', async () => {
-  render(<CustomerForm customer={customer} saveCustomer={saveCustomer} />)
+  customRender(<CustomerForm customer={customer} saveCustomer={saveCustomer} />)
 
   userEvent.type(screen.getByLabelText(/Nome/), 'John')
   userEvent.type(screen.getByLabelText(/Cognome/), 'Dee')
@@ -40,7 +46,7 @@ test('rendering and submitting a CustomerForm', async () => {
 })
 
 test('display an error on submitting', async () => {
-  render(<CustomerForm customer={customer} saveCustomer={saveCustomer} />)
+  customRender(<CustomerForm customer={customer} saveCustomer={saveCustomer} />)
 
   userEvent.type(screen.getByLabelText(/Cognome/), 'Dee')
   userEvent.type(screen.getByLabelText(/Indirizzo/), 'Via degli Estensi 64')

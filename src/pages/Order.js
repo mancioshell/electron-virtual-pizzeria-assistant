@@ -1,7 +1,7 @@
 import { Row, Col, Card, Button } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 
-import DishList from '../components/DishList'
+import DishList from '../components/OrderDishList'
 import { useParams, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import BlockUi from 'react-block-ui'

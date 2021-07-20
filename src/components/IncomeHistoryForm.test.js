@@ -1,12 +1,18 @@
 import React from 'react'
 
-import { render, waitFor, screen } from '@testing-library/react'
+import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import IncomeHistoryForm from './IncomeHistoryForm'
 import userEvent from '@testing-library/user-event'
 
+import i18NextCustomRender from '../i18n.test'
+import config from '../../public/locales/it/income-history-form.json'
+
 let setIncomeType
 let setDate
+
+const customRender = (ui, renderOptions) =>
+  i18NextCustomRender(ui, { ...config }, renderOptions)
 
 beforeEach(() => {
   setIncomeType = jest.fn()
@@ -22,7 +28,7 @@ test('rendering and select from day to week', async () => {
   let incomeType = 'day'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -43,7 +49,7 @@ test('rendering and select from day to month', async () => {
   let incomeType = 'day'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -64,7 +70,7 @@ test('rendering and select from week to month', async () => {
   let incomeType = 'week'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -85,7 +91,7 @@ test('rendering and select from week to day', async () => {
   let incomeType = 'week'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -106,7 +112,7 @@ test('rendering and select from month to week', async () => {
   let incomeType = 'month'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -127,7 +133,7 @@ test('rendering and select from month to day', async () => {
   let incomeType = 'month'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -148,7 +154,7 @@ test('rendering and click next button when incomeType is day', async () => {
   let incomeType = 'day'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -171,7 +177,7 @@ test('rendering and click next button when incomeType is week', async () => {
   let incomeType = 'week'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -194,7 +200,7 @@ test('rendering and click next button when incomeType is month', async () => {
   let incomeType = 'month'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -219,7 +225,7 @@ test('rendering and click prev button when incomeType is day', async () => {
   let incomeType = 'day'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -242,7 +248,7 @@ test('rendering and click prev button when incomeType is week', async () => {
   let incomeType = 'week'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}
@@ -265,7 +271,7 @@ test('rendering and click prev button when incomeType is month', async () => {
   let incomeType = 'month'
   let date = new Date()
 
-  render(
+  customRender(
     <IncomeHistoryForm
       incomeType={incomeType}
       setIncomeType={setIncomeType}

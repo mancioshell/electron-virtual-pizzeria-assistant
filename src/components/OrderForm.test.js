@@ -1,16 +1,37 @@
 import React from 'react'
 
-import { render, waitFor, screen } from '@testing-library/react'
+import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import OrderForm from './OrderForm'
 import userEvent from '@testing-library/user-event'
 import selectEvent from 'react-select-event'
+
+import i18NextCustomRender from '../i18n.test'
+import orderFormConfig from '../../public/locales/it/order-form.json'
+import customerConfig from '../../public/locales/it/customer-form.json'
+import orderDishConfig from '../../public/locales/it/order-dish-form.json'
 
 let options = [
   { name: 'Pizza Margherita', _id: 'asdqweq' },
   { name: 'Pizza Boscaiola', _id: 'qegy5rsd' },
   { name: 'Pizza 4 Formaggi', _id: 'bjudsnasqw' }
 ]
+
+const customRender = (ui, renderOptions) => {
+  const buttonConfig = {
+    ...orderFormConfig.button,
+    ...customerConfig.button,
+    ...orderDishConfig.button
+  }
+  const config = {
+    ...orderFormConfig,
+    ...customerConfig,
+    ...orderDishConfig,
+    button: buttonConfig
+  }
+
+  return i18NextCustomRender(ui, { ...config }, renderOptions)
+}
 
 let currentDate = new Date()
 
@@ -47,7 +68,7 @@ afterEach(() => {
 })
 
 test('rendering and submitting a OrderForm when click Save button', async () => {
-  render(
+  customRender(
     <OrderForm
       order={order}
       saveOrder={saveOrder}
@@ -95,7 +116,7 @@ test('rendering and submitting a OrderForm when click Save button', async () => 
 })
 
 test('rendering and submitting a OrderForm when click Confirm button', async () => {
-  render(
+  customRender(
     <OrderForm
       order={order}
       saveOrder={saveOrder}
@@ -143,7 +164,7 @@ test('rendering and submitting a OrderForm when click Confirm button', async () 
 })
 
 test('display an error on submitting without customer surname', async () => {
-  render(
+  customRender(
     <OrderForm
       order={order}
       saveOrder={saveOrder}
@@ -178,7 +199,7 @@ test('display an error on submitting without customer surname', async () => {
 })
 
 test('display an error on submitting without time and date order and booking is checked', async () => {
-  render(
+  customRender(
     <OrderForm
       order={order}
       saveOrder={saveOrder}
@@ -225,7 +246,7 @@ test('display an error on submitting without time and date order and booking is 
 })
 
 test('add more dish items on click add button', async () => {
-  render(
+  customRender(
     <OrderForm
       order={order}
       saveOrder={saveOrder}
@@ -244,7 +265,7 @@ test('add more dish items on click add button', async () => {
 })
 
 test('remove dish items on click delete', async () => {
-  render(
+  customRender(
     <OrderForm
       order={order}
       saveOrder={saveOrder}

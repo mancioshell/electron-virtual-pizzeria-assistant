@@ -19,5 +19,7 @@
     "placeholder": "Inserisci il recapito telefonico",
     "feedback": "Il recapito telefonico è obbligatorio"
   },
-  "button": "Salva"
+  "button": {
+    "save": "Salva"
+  }
 }

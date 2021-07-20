@@ -9,5 +9,7 @@
     "placeholder": "Inserisci la quantità",
     "feedback": "Il valore deve essere maggiore di 0"
   },
-  "button": "Rimuovi"
+  "button": {
+    "remove": "Rimuovi"
+  }
 }

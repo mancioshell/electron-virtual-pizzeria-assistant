@@ -11,7 +11,7 @@ import TablePagination from './TablePagination'
 import { useTranslation } from 'react-i18next'
 
 function DishList({ items }) {
-  const { t } = useTranslation(['dish-list-component'])
+  const { t } = useTranslation(['order-dish-list'])
 
   const data = React.useMemo(
     () =>

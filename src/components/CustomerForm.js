@@ -145,7 +145,7 @@ function CustomerForm({ customer, saveCustomer }) {
             <hr className="mt-2"></hr>
 
             <Button className="mr-3" variant="primary" type="submit">
-              <i className="fas fa-save"></i> {t('button')}
+              <i className="fas fa-save"></i> {t('button.save')}
             </Button>
           </Form>
         </BlockUi>

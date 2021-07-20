@@ -113,7 +113,7 @@ const OrderDishForm = ({ index, remove, items }) => {
             type="button"
             size="sm"
             onClick={(e) => remove(index)}>
-            <i className="fas fa-trash"></i> {t('button')}
+            <i className="fas fa-trash"></i> {t('button.remove')}
           </Button>
         </Col>
       ) : null}

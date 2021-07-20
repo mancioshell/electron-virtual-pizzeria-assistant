@@ -1,12 +1,18 @@
 import React from 'react'
 
-import { render, waitFor, screen } from '@testing-library/react'
+import { waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import DishItemForm from './DishItemForm'
 import userEvent from '@testing-library/user-event'
 
+import i18NextCustomRender from '../i18n.test'
+import config from '../../public/locales/it/dish-item-form.json'
+
 let dish = { name: '', description: '', price: 0 }
 let saveDish
+
+const customRender = (ui, renderOptions) =>
+  i18NextCustomRender(ui, { ...config }, renderOptions)
 
 beforeEach(() => {
   saveDish = jest.fn()
@@ -17,7 +23,7 @@ afterEach(() => {
 })
 
 test('rendering and submitting a DishItemForm with description', async () => {
-  render(<DishItemForm dish={dish} saveDish={saveDish} />)
+  customRender(<DishItemForm dish={dish} saveDish={saveDish} />)
 
   userEvent.type(screen.getByLabelText(/Nome/), 'Pizza Margherita')
   userEvent.type(screen.getByLabelText(/Prezzo Unitario/), '2')
@@ -38,7 +44,7 @@ test('rendering and submitting a DishItemForm with description', async () => {
 })
 
 test('rendering and submitting a DishItemForm without description', async () => {
-  render(<DishItemForm dish={dish} saveDish={saveDish} />)
+  customRender(<DishItemForm dish={dish} saveDish={saveDish} />)
 
   userEvent.type(screen.getByLabelText(/Nome/), 'Pizza Margherita')
   userEvent.type(screen.getByLabelText(/Prezzo Unitario/), '2')
@@ -58,7 +64,7 @@ test('rendering and submitting a DishItemForm without description', async () => 
 })
 
 test('display an error on submitting', async () => {
-  render(<DishItemForm dish={dish} saveDish={saveDish} />)
+  customRender(<DishItemForm dish={dish} saveDish={saveDish} />)
 
   userEvent.click(screen.getByRole('button', { name: /Salva/ }))
 
