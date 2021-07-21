@@ -1,0 +1,9 @@
+{
+    "modify-title": "Modify Order",
+    "insert-title": "Insert new Order",
+    "title": "Customer",
+    "success-save-message": "Order saved with success",
+    "success-save-message-title": "Order",
+    "success-confirm-message": "Order confirmed with success",
+    "success-confirm-message-title": "Order"
+}

@@ -1,0 +1,25 @@
+{
+  "name": {
+    "label": "Name",
+    "placeholder": "Insert the name",
+    "feedback": "Name is required"
+  },
+  "surname": {
+    "label": "Surname",
+    "placeholder": "Insert the surname",
+    "feedback": "Surname is required"
+  },
+  "address": {
+    "label": "Address",
+    "placeholder": "Insert the address",
+    "feedback": "Address is required"
+  },
+  "phone": {
+    "label": "Phone",
+    "placeholder": "Insert the phone",
+    "feedback": "Phone is required"
+  },
+  "button": {
+    "save": "Save"
+  }
+}

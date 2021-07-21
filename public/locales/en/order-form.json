@@ -1,0 +1,29 @@
+{
+  "title": "Order",
+  "booking": {
+    "label": "Booking",
+
+    "hour": {
+      "label": "Booking Hour",
+      "placeholder": "Insert booking hour",
+      "feedback": "Booking hour is required"
+    },
+    "date": {
+      "label": "Booking Date",
+      "placeholder": "Insert booking date",
+      "feedback": "Booking date is required"
+    }
+  },
+  "note": {
+    "label": "Note",
+    "placeholder": "Insert note"
+  },
+  "dish-list": {
+    "label": "Dish List",
+    "button": "Add"
+  },
+  "button": {
+    "save": "Save",
+    "confirm": "Confirm"
+  }
+}

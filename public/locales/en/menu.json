@@ -1,0 +1,13 @@
+{
+    "items": {
+        "order": "Orders",
+        "new-order": "New Order",
+        "order-list": "Order List",
+        "menu": "Menu",
+        "new-dish": "New Dish",
+        "dish-list": "Dish List",
+        "customer-list": "Customer List",
+        "income-history": "Historical Proceeds",
+        "settings": "Settings"
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "label": {
+    "search-dish": "Search Dish",
+    "dish-list-per-page": "Dishes per page"
+  },
+  "columns": {
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "action": "Actions"
+  },
+  "button": {
+    "modify": "Modify",
+    "remove": "Remove"
+  }
+}

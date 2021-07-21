@@ -1,0 +1,12 @@
+{
+    "label":{
+        "search-dish": "Search Dish",
+        "dish-list-per-page": "Dish list per page"
+    },
+    "columns": {
+        "dish": "Dish",
+        "price": "Price",
+        "amount": "Amount",
+        "total": "Total"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "name": {
+    "label": "Name",
+    "placeholder": "Insert Name",
+    "feedback": "Name is required"
+  },
+  "price": {
+    "label": "Price",
+    "placeholder": "Insert Price",
+    "feedback": "Price is required"
+  },
+  "description": {
+    "label": "Description",
+    "placeholder": "Insert Description"
+  },
+  "button": "Save"
+}

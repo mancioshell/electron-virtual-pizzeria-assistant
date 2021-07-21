@@ -1,0 +1,55 @@
+{
+  "thermal-printer": {
+    "label": "Thermal Printer Connection",
+    "address": {
+      "label": "IP Address",
+      "placeholder": "Insert POS IP Address",
+      "feedback": "IP Address is required"
+    },
+    "port": {
+      "label": "Port",
+      "placeholder": "Insert POS Port",
+      "feedback": "Port is required"
+    },
+    "printer": {
+      "label": "Printer",
+      "placeholder": "Select Printer ...",
+      "feedback": "Selection of Printer is required"
+    }
+  },
+  "network": {
+    "test": "Test...",
+    "connection": "Connection...",
+    "success": "Ok",
+    "failed": "Failed"
+  },
+  "company": {
+    "label": "Company",
+    "pizzeria": {
+      "label": "Pizzeria Name",
+      "placeholder": "Insert pizzeria name",
+      "feedback": "Name is required"
+    },
+    "address": {
+      "label": "Address",
+      "placeholder": "Insert address",
+      "feedback": "Address is required"
+    },
+    "cap": {
+      "label": "Postal Code",
+      "placeholder": "Insert Postal Code",
+      "feedback": "Postal Code is required"
+    },
+    "city": {
+      "label": "City",
+      "placeholder": "Insert City",
+      "feedback": "City is required"
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "Insert Phone",
+      "feedback": "Phone is required"
+    }
+  },
+  "button": "Save"
+}

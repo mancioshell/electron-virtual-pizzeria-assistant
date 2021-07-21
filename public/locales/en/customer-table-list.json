@@ -1,0 +1,17 @@
+{
+    "label":{
+        "search-customer": "Search Customer",
+        "customer-per-page": "Customers per page"
+    },
+    "columns": {
+        "name": "Name",
+        "surname": "Surname",
+        "address": "Address",
+        "phone": "Phone",
+        "actions": "Actions"
+    },
+    "button": {
+        "create": "Create Order",
+        "modify": "Modify"
+    }
+}
