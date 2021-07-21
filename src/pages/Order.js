@@ -1,10 +1,9 @@
 import { Row, Col, Card, Button } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 
-import DishList from '../components/DishList'
-
+import DishList from '../components/OrderDishList'
 import { useParams, useHistory } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next'
 import BlockUi from 'react-block-ui'
 
 const initOrder = {
@@ -24,6 +23,7 @@ function Order() {
   let { id } = useParams()
 
   const history = useHistory()
+  const { t } = useTranslation(['order'])
 
   const [order, setOrder] = useState(initOrder)
   const [dishItems, setDishItems] = useState([])
@@ -54,7 +54,7 @@ function Order() {
     getCurrentOrder()
   }, [])
 
-  const printReceipt = async () => {    
+  const printReceipt = async () => {
     try {
       setIsPrinting(true)
       await window?.api?.printReceipt(order)
@@ -75,7 +75,8 @@ function Order() {
       <Card border="secondary">
         <Card.Header as="h5">
           {' '}
-          <i className="fas fa-pizza-slice"></i> Ordine Numero: {order._id}
+          <i className="fas fa-pizza-slice"></i> {t('label.order-number')}:{' '}
+          {order._id}
         </Card.Header>
         <Card.Body>
           <Card.Title>
@@ -83,26 +84,26 @@ function Order() {
           </Card.Title>
           {order.booking ? (
             <Card.Subtitle className="mb-2 text-muted">
-              Prenotazione
+              {t('label.booking')}
             </Card.Subtitle>
           ) : null}
 
           <Card.Text className="mt-4">
-            <strong>Indirizzo:</strong> {order.customer.address}
+            <strong>{t('label.address')}:</strong> {order.customer.address}
           </Card.Text>
           <Card.Text>
-            <strong>Reacapito Telefonico:</strong> {order.customer.phone}
+            <strong>{t('label.phone')}:</strong> {order.customer.phone}
           </Card.Text>
 
           {order.booking ? (
             <>
               <Card.Text>
-                <strong>Data Prenotazione:</strong>{' '}
+                <strong>{t('label.booking-date')}:</strong>{' '}
                 {order.date.toLocaleDateString()}
               </Card.Text>
 
               <Card.Text>
-                <strong>Orario Prenotazione:</strong> {order.time}
+                <strong>{t('label.booking-hour')}:</strong> {order.time}
               </Card.Text>
             </>
           ) : null}
@@ -110,11 +111,11 @@ function Order() {
           <hr />
 
           <Card.Text>
-            <strong>Note:</strong> {order.notes}
+            <strong>{t('label.note')}:</strong> {order.notes}
           </Card.Text>
 
           <Card.Text as="h4" className="mt-5">
-            <strong>Riepilogo Ordine:</strong>
+            <strong>{t('label.order-resume')}:</strong>
           </Card.Text>
 
           <DishList items={dishItems}></DishList>
@@ -123,7 +124,7 @@ function Order() {
             <Col>
               <span className="float-right">
                 <Card.Text className="float-right">
-                  <strong>Importo da Pagare: </strong> &#8364; {total}
+                  <strong>{t('label.total-income')}: </strong> &#8364; {total}
                 </Card.Text>
               </span>
             </Col>
@@ -132,10 +133,10 @@ function Order() {
           <hr />
 
           <Button className="mr-2 mb-2" variant="info" onClick={printReceipt}>
-            <i className="fas fa-print"></i> Stampa{' '}
+            <i className="fas fa-print"></i> {t('button.print')}
           </Button>
           <Button className="mr-2 mb-2" variant="primary" onClick={orderList}>
-            <i className="fas fa-clipboard-list"></i> Lista Ordini{' '}
+            <i className="fas fa-clipboard-list"></i> {t('button.order-list')}
           </Button>
         </Card.Body>
       </Card>

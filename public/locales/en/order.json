@@ -1,0 +1,18 @@
+{
+  "label": {
+    "order-number": "Order Number",
+    "booking": "Booking",
+    "address": "Address",
+    "phone": "Phone",
+    "booking-date": "Booking Date",
+    "booking-hour": "Booking Hour",
+    "note": "Note",
+    "order-resume": "Order Resume",
+    "total-income": "Total Icome"
+  },
+
+  "button": {
+    "print": "Print",
+    "order-list": "Order List"
+  }
+}

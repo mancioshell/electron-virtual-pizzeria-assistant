@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
 import { Field } from 'formik'
 import Select from 'react-select'
+import { useTranslation } from 'react-i18next'
 
 const OrderDishForm = ({ index, remove, items }) => {
   const [options, setOptions] = useState([])
+
+  const { t } = useTranslation(['order-dish-form'])
 
   useEffect(() => {
     const getOptions = async () => {
@@ -29,7 +32,7 @@ const OrderDishForm = ({ index, remove, items }) => {
             return (
               <Form.Group controlId={`items.${index}.dish`}>
                 <Form.Label>
-                  <b>Portata *</b> :
+                  <b>{t('dish.label')} *</b> :
                 </Form.Label>
                 <Select
                   inputId={`items.${index}.dish`}
@@ -61,14 +64,14 @@ const OrderDishForm = ({ index, remove, items }) => {
                     )
                   }}
                   required
-                  placeholder="Inserisci la descrizione della portata"
+                  placeholder={t('dish.placeholder')}
                 />
 
                 {isInvalid ? (
                   <span
                     className="manual-invalid-feedback"
                     data-testid={`items.${index}.dish`}>
-                    La portata è obbligatoria
+                    {t('dish.feedback')}
                   </span>
                 ) : null}
               </Form.Group>
@@ -81,7 +84,7 @@ const OrderDishForm = ({ index, remove, items }) => {
           {({ field, form, meta }) => (
             <Form.Group controlId="number">
               <Form.Label>
-                <b>Quantità *</b> :
+                <b>{t('amount.label')} *</b> :
               </Form.Label>
               <Form.Control
                 type="number"
@@ -92,10 +95,10 @@ const OrderDishForm = ({ index, remove, items }) => {
                 isValid={form.submitCount > 0 && meta.touched && !meta.error}
                 isInvalid={form.submitCount > 0 && meta.touched && meta.error}
                 required
-                placeholder="Inserisci la quantità"
+                placeholder={t('amount.placeholder')}
               />
               <Form.Control.Feedback type="invalid">
-                Il valore deve essere maggiore di 0
+                {t('amount.feedback')}
               </Form.Control.Feedback>
             </Form.Group>
           )}
@@ -110,7 +113,7 @@ const OrderDishForm = ({ index, remove, items }) => {
             type="button"
             size="sm"
             onClick={(e) => remove(index)}>
-            <i className="fas fa-trash"></i> Rimuovi
+            <i className="fas fa-trash"></i> {t('button.remove')}
           </Button>
         </Col>
       ) : null}

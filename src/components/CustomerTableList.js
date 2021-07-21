@@ -9,8 +9,11 @@ import React from 'react'
 
 import TableForm from './TableForm'
 import TablePagination from './TablePagination'
+import { useTranslation } from 'react-i18next'
 
 function CustomerTableList({ customerList, updateCustomer, createOrder }) {
+  const { t } = useTranslation(['customer-table-list'])
+
   const actions = (customer) => (
     <>
       <Button
@@ -19,7 +22,7 @@ function CustomerTableList({ customerList, updateCustomer, createOrder }) {
         type="button"
         size="sm"
         onClick={() => updateCustomer(customer)}>
-        <i className="fas fa-pencil-alt"></i> Modifica
+        <i className="fas fa-pencil-alt"></i> {t('button.create')}
       </Button>
       <Button
         className="mr-2 mb-2"
@@ -27,7 +30,7 @@ function CustomerTableList({ customerList, updateCustomer, createOrder }) {
         type="button"
         size="sm"
         onClick={() => createOrder(customer)}>
-        <i className="fas fa-copy"></i> Crea Ordine
+        <i className="fas fa-copy"></i> {t('button.modify')}
       </Button>
     </>
   )
@@ -43,13 +46,13 @@ function CustomerTableList({ customerList, updateCustomer, createOrder }) {
 
   const columns = React.useMemo(
     () => [
-      { Header: 'Nome', accessor: 'name' },
-      { Header: 'Cognome', accessor: 'surname' },
-      { Header: 'Indirizzo', accessor: 'address' },
-      { Header: 'Recapito Telefonico', accessor: 'phone' },
-      { Header: 'Azioni', accessor: 'actions' }
+      { Header: t('columns.name'), accessor: 'name' },
+      { Header: t('columns.surname'), accessor: 'surname' },
+      { Header: t('columns.address'), accessor: 'address' },
+      { Header: t('columns.phone'), accessor: 'phone' },
+      { Header: t('columns.actions'), accessor: 'actions' }
     ],
-    []
+    [t]
   )
 
   const tableInstance = useTable(
@@ -105,8 +108,8 @@ function CustomerTableList({ customerList, updateCustomer, createOrder }) {
   return (
     <>
       <TableForm
-        searchLabel="Ricerca Cliente"
-        selectLabel="Clienti per pagina"
+        searchLabel={t('label.search-customer')}
+        selectLabel={t('label.customer-per-page')}
         {...tableFormProps}></TableForm>
       <TablePagination
         {...tableProps}

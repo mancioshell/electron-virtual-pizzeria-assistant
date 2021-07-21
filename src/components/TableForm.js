@@ -1,4 +1,5 @@
 import { Row, Col, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 function TableForm({
   searchLabel,
@@ -8,6 +9,8 @@ function TableForm({
   setPageSize,
   setGlobalFilter
 }) {
+  const { t } = useTranslation(['table-form'])
+
   return (
     <Row className="mt-5">
       <Col md="6">
@@ -21,7 +24,7 @@ function TableForm({
             value={globalFilter || ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
             required
-            placeholder="Ricerca ..."
+            placeholder={t('placeholder')}
           />
         </Form.Group>
       </Col>
@@ -40,7 +43,7 @@ function TableForm({
             }}>
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
-                Mostrane {pageSize}
+                {t('label-option')} {pageSize}
               </option>
             ))}
           </Form.Control>

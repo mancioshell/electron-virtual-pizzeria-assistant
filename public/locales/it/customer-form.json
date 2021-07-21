@@ -1,0 +1,25 @@
+{
+  "name": {
+    "label": "Nome",
+    "placeholder": "Inserisci il nome",
+    "feedback": "Il nome è obbligatorio"
+  },
+  "surname": {
+    "label": "Cognome",
+    "placeholder": "Inserisci il cognome",
+    "feedback": "Il cognome è obbligatorio"
+  },
+  "address": {
+    "label": "Indirizzo",
+    "placeholder": "Inserisci l'indirizzo",
+    "feedback": "L'indirizzo è obbligatorio"
+  },
+  "phone": {
+    "label": "Recapito Telefonico",
+    "placeholder": "Inserisci il recapito telefonico",
+    "feedback": "Il recapito telefonico è obbligatorio"
+  },
+  "button": {
+    "save": "Salva"
+  }
+}

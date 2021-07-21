@@ -4,8 +4,8 @@ import UIContext from '../context/UIContext'
 import DishItemForm from '../components/DishItemForm'
 
 import { useParams } from 'react-router-dom'
-
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const initDish = {
   name: '',
@@ -15,6 +15,7 @@ const initDish = {
 
 function InsertDish() {
   const history = useHistory()
+  const { t } = useTranslation(['insert-dish-item'])
 
   let { id } = useParams()
   const [dish, setDish] = useState(initDish)
@@ -36,8 +37,8 @@ function InsertDish() {
     if (id) history.push(`/dish-list`)
     if (!id) resetForm(initDish)
     addSuccessMessage({
-      text: 'Portata salvata con successo',
-      type: 'Portata',
+      text: t('success-message'),
+      type: t('success-message-title'),
       show: true
     })
   }
@@ -49,11 +50,11 @@ function InsertDish() {
           {' '}
           {id ? (
             <>
-              <i className="fas fa-pencil-alt"></i> Modifica Portata
+              <i className="fas fa-pencil-alt"></i> {t('modify-title')}
             </>
           ) : (
             <>
-              <i className="fas fa-plus"></i> Inserisci Nuovo Portata
+              <i className="fas fa-plus"></i> {t('insert-title')}
             </>
           )}{' '}
         </h1>
@@ -62,7 +63,7 @@ function InsertDish() {
       <section className="mt-5" id="formsContainer">
         <h3>
           {' '}
-          <i className="fas fa-pizza-slice"></i> Portata{' '}
+          <i className="fas fa-pizza-slice"></i> {t('title')}
         </h3>
 
         <hr className="mt-2"></hr>

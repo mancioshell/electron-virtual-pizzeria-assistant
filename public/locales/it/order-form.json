@@ -1,0 +1,29 @@
+{
+  "title": "Ordine",
+  "booking": {
+    "label": "Prenotazione",
+
+    "hour": {
+      "label": "Orario Prenotazione",
+      "placeholder": "Inserisci l'orario di prenotazione",
+      "feedback": "L'orario di prenotazione è obbligatorio"
+    },
+    "date": {
+      "label": "Data Prenotazione",
+      "placeholder": "Inserisci la data di prenotazione",
+      "feedback": "La data di prenotazione è obbligatoria"
+    }
+  },
+  "note": {
+    "label": "Note",
+    "placeholder": "Inserisci delle note"
+  },
+  "dish-list": {
+    "label": "Portate",
+    "button": "Aggiungi"
+  },
+  "button": {
+    "save": "Salva",
+    "confirm": "Conferma"
+  }
+}

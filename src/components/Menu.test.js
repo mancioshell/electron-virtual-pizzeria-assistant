@@ -7,17 +7,19 @@ import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
 import { SettingsContext } from '../context/SettingsContext'
 
+import i18NextCustomRender from '../i18n.test'
+import config from '../../public/locales/it/menu.json'
+
 let settings = {
   name: 'La Pinseria JG'
 }
 
 const customRender = (ui, { providerProps, ...renderOptions }) => {
-  return render(
-    <SettingsContext.Provider {...providerProps}>
-      {ui}
-    </SettingsContext.Provider>,
-    renderOptions
+  const Provider = (
+    <SettingsContext.Provider {...providerProps}>{ui}</SettingsContext.Provider>
   )
+
+  return i18NextCustomRender(Provider, { ...config }, renderOptions)
 }
 
 beforeEach(() => {

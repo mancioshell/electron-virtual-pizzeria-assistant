@@ -6,6 +6,7 @@ import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 
 import BlockUi from 'react-block-ui'
+import { useTranslation } from 'react-i18next'
 
 const schema = yup
   .object()
@@ -17,6 +18,8 @@ const schema = yup
   .required()
 
 function DishItemInputForm() {
+  const { t } = useTranslation(['dish-item-form'])
+
   return (
     <section className="mt-5" id="customer">
       <Row>
@@ -26,7 +29,7 @@ function DishItemInputForm() {
               return (
                 <Form.Group controlId="name">
                   <Form.Label>
-                    <b>Nome *</b> :
+                    <b>{t('name.label')} *</b> :
                   </Form.Label>
                   <Form.Control
                     type="text"
@@ -39,10 +42,10 @@ function DishItemInputForm() {
                       form.submitCount > 0 && meta.touched && meta.error
                     }
                     required
-                    placeholder="Inserisci il nome"
+                    placeholder={t('name.placeholder')}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Il nome è obbligatorio
+                    {t('name.feedback')}
                   </Form.Control.Feedback>
                 </Form.Group>
               )
@@ -54,7 +57,7 @@ function DishItemInputForm() {
             {({ field, form, meta }) => (
               <Form.Group controlId="price">
                 <Form.Label>
-                  <b>Prezzo Unitario (&#8364;) *</b> :
+                  <b>{t('price.label')} (&#8364;) *</b> :
                 </Form.Label>
                 <Form.Control
                   type="number"
@@ -64,10 +67,10 @@ function DishItemInputForm() {
                   isValid={form.submitCount > 0 && meta.touched && !meta.error}
                   isInvalid={form.submitCount > 0 && meta.touched && meta.error}
                   required
-                  placeholder="Inserisci il prezzo unitario"
+                  placeholder={t('price.placeholder')}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Il prezzo è obbligatorio
+                  {t('price.feedback')}
                 </Form.Control.Feedback>
               </Form.Group>
             )}
@@ -80,7 +83,7 @@ function DishItemInputForm() {
           return (
             <Form.Group controlId="description">
               <Form.Label>
-                <b>Descrizione</b> :
+                <b>{t('description.label')}</b> :
               </Form.Label>
               <Form.Control
                 as="textarea"
@@ -88,7 +91,7 @@ function DishItemInputForm() {
                 data-testid="description"
                 isValid={form.submitCount > 0 && meta.touched && !meta.error}
                 isInvalid={form.submitCount > 0 && meta.touched && meta.error}
-                placeholder="Inserisci la descrizione"
+                placeholder={t('description.placeholder')}
               />
             </Form.Group>
           )
@@ -99,6 +102,8 @@ function DishItemInputForm() {
 }
 
 function DishItemForm({ dish, saveDish }) {
+  const { t } = useTranslation(['dish-item-form'])
+
   const resetForm = (actions) => (order) => {
     actions.resetForm({ values: order })
     actions.setSubmitting(false)
@@ -120,7 +125,7 @@ function DishItemForm({ dish, saveDish }) {
             <hr className="mt-2"></hr>
 
             <Button className="mr-3" variant="primary" type="submit">
-              <i className="fas fa-save"></i> Salva
+              <i className="fas fa-save"></i> {t('button')}
             </Button>
           </Form>
         </BlockUi>

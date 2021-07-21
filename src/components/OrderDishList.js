@@ -8,8 +8,11 @@ import {
 
 import TableForm from './TableForm'
 import TablePagination from './TablePagination'
+import { useTranslation } from 'react-i18next'
 
 function DishList({ items }) {
+  const { t } = useTranslation(['order-dish-list'])
+
   const data = React.useMemo(
     () =>
       items.map((item) => ({
@@ -22,12 +25,12 @@ function DishList({ items }) {
 
   const columns = React.useMemo(
     () => [
-      { Header: 'Portata', accessor: 'name' },
-      { Header: 'Prezzo', accessor: 'price' },
-      { Header: 'Quantità', accessor: 'amount' },
-      { Header: 'Totale', accessor: 'total' }
+      { Header: t('columns.dish'), accessor: 'name' },
+      { Header: t('columns.price'), accessor: 'price' },
+      { Header: t('columns.amount'), accessor: 'amount' },
+      { Header: t('columns.total'), accessor: 'total' }
     ],
-    []
+    [t]
   )
 
   const tableInstance = useTable(
@@ -83,8 +86,8 @@ function DishList({ items }) {
   return (
     <>
       <TableForm
-        searchLabel="Ricerca Portata"
-        selectLabel="Portate per pagina"
+        searchLabel={t('label.search-dish')}
+        selectLabel={t('dish-list-per-page')}
         {...tableFormProps}></TableForm>
       <TablePagination
         {...tableProps}

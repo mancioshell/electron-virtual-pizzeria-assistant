@@ -1,0 +1,15 @@
+{
+  "dish": {
+    "label": "Dish",
+    "placeholder": "Select the dish",
+    "feedback": "Dish is required"
+  },
+  "amount": {
+    "label": "Amount",
+    "placeholder": "Insert the amount",
+    "feedback": "Value must me greater than 0"
+  },
+  "button": {
+    "remove": "Remove"
+  }
+}

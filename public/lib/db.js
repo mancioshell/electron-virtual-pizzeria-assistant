@@ -8,13 +8,16 @@ let customers = Datastore.create(`${userData}/db/customers.db`)
 let dishItems = Datastore.create(`${userData}/db/dish-items.db`)
 let settings = Datastore.create(`${userData}/db/settings.db`)
 
+const i18n = require('../i18n')
+let i18next = i18n.initI18Next(app.getLocale())
+
 const initSettings = {
   id: 'settings',
-  name: 'Nome Pizzeria',
-  address: 'Indirizzo Pizzeria',
-  city: 'Città Pizzeria',
-  cap: 'Cap Pizzeria',
-  phone: 'Telefono Pizzeria',
+  name: i18next.t('settings.name'),
+  address: i18next.t('settings.address'),
+  city: i18next.t('settings.city'),
+  cap: i18next.t('settings.cap'),
+  phone: i18next.t('settings.phone'),
   choice: 'network',
   usb: '',
   network: { address: '255.255.255.1', port: 9100 }

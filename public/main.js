@@ -1,7 +1,12 @@
 const { app, BrowserWindow, autoUpdater, dialog, ipcMain } = require('electron')
+const backend = require('i18next-electron-fs-backend')
+const fs = require('fs')
 const isDev = require('electron-is-dev')
 const path = require('path')
 const api = require('./lib/db').api
+
+const i18n = require('./i18n')
+let i18next
 
 const server = 'https://hazel-27923t225-mancioshell.vercel.app'
 const url = `${server}/update/${process.platform}/${app.getVersion()}`
@@ -26,11 +31,10 @@ function createAutoUpdater() {
   autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     const dialogOpts = {
       type: 'info',
-      buttons: ['Riavvia', 'Ricordamelo più tardi'],
-      title: 'Aggiornamento Applicazione',
+      buttons: [i18next.t('button.close'), i18next.t('button.remind-later')],
+      title: i18next.t('title'),
       message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail:
-        "E' stato eseguito il download di una nuova versione. Riavvia l'applicazione per applicare gli aggiornamenti."
+      detail: i18next.t('button.detail')
     }
 
     dialog.showMessageBox(dialogOpts).then((returnValue) => {
@@ -58,6 +62,8 @@ function createWindow() {
     icon: __dirname + '/favicon.ico'
   })
 
+  backend.mainBindings(ipcMain, win, fs)
+
   win.loadURL(
     isDev
       ? 'http://localhost:3000'
@@ -75,6 +81,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  i18next = i18n.initI18Next(app.getLocale())
   createWindow()
 
   if (!isDev) createAutoUpdater()
@@ -93,6 +100,8 @@ app.whenReady().then(() => {
 
   ipcMain.handle('getAppVersion', async (event, args) => app.getVersion())
 
+  ipcMain.handle('getAppLocale', async (event, args) => app.getLocale())
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow()
@@ -103,5 +112,14 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
+  } else {
+    backend.clearMainBindings(ipcMain)
   }
 })
+
+// app.on('ready', () => {
+//   let currentLocale = app.getLocale()
+//   console.log(currentLocale)
+//   //console.log('electron-ready currentLocale: ' + currentLocale);
+//   // currentLocale = 'bn';
+// })

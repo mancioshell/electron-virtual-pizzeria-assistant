@@ -1,0 +1,20 @@
+{
+    "actions": {
+        "view": "Visualizza",
+        "modify": "Modifica",
+        "print": "Stampa",
+        "remove": "Rimuovi"
+    },
+    "columns": {
+        "name": "Nome",
+        "surname": "Cognome",
+        "address": "Indirizzo",
+        "booking-date": "Data Prenotazione",
+        "booking-hour": "Ora Prenotazione",
+        "actions": "Azioni"
+    },
+    "label": {
+        "order-search": "Ricerca Ordine",
+        "order-per-page": "Ordini per pagina"
+    }
+}

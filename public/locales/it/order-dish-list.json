@@ -1,0 +1,12 @@
+{
+    "label":{
+        "search-dish": "Ricerca Portata",
+        "dish-list-per-page": "Portate per pagina"
+    },
+    "columns": {
+        "dish": "Portata",
+        "price": "Prezzo",
+        "amount": "Quantità",
+        "total": "Totale"
+    }
+}

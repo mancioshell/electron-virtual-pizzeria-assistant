@@ -3,17 +3,20 @@ import { Row, Col } from 'react-bootstrap'
 
 import Diagram from '../components/Diagram'
 import IncomeHistoryForm from '../components/IncomeHistoryForm'
-
-const label = {
-  day: 'Incasso del Giorno',
-  week: 'Incasso della Settimana',
-  month: 'Incasso del Mese'
-}
+import { useTranslation } from 'react-i18next'
 
 function IncomeHistory() {
   const [incomeType, setIncomeType] = useState('day')
   const [date, setDate] = useState(new Date())
   const [income, setIncome] = useState(0)
+
+  const { t } = useTranslation(['income-history'])
+
+  const label = {
+    day: t('label.day'),
+    week: t('label.week'),
+    month: t('label.month')
+  }
 
   const ref = useRef()
 
@@ -42,7 +45,7 @@ function IncomeHistory() {
     <div className="mt-4">
       <h1>
         {' '}
-        <i className="fas fa-euro-sign"></i> Storico Incassi
+        <i className="fas fa-euro-sign"></i> {t('title')}
       </h1>
 
       <Row className="mt-5">

@@ -1,0 +1,13 @@
+{
+  "button": {
+    "prev": "Precedente",
+    "next": "Successivo"
+  },
+
+  "label": {
+    "income": "Incasso per",
+    "day": "Giorno",
+    "week": "Settimana",
+    "month": "Mese"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Aggiornamento Applicazione",
+  "button": {
+    "close": "Chiudi",
+    "remind-later": "Ricordamelo più tardi"
+  },
+  "detail": "E' stato eseguito il download di una nuova versione. Chiudi e Riapri l'applicazione per applicare gli aggiornamenti.",
+  "settings": {
+    "name": "Nome Pizzeria",
+    "address": "Indirizzo Pizzeria",
+    "city": "Città Pizzeria",
+    "cap": "Cap Pizzeria",
+    "phone": "Telefono Pizzeria"
+  },
+  "receipt": {
+    "customer": "Cliente",
+    "name": "Nome",
+    "surname": "Cognome",
+    "address": "Indirizzo",
+    "phone": "Telefono",
+    "order": "Ordine",
+    "order-number": "Numero Ordine",
+    "booking-date": "Data Prenotazione",
+    "bookling-hour": "Orario Prenotazione",
+    "note": "Note",
+    "dish": "Portata",
+    "price": "Prezzo",
+    "euro": "Euro",
+    "total": "Totale",
+    "disclaimer": "Questo scontrino non ha validita' fiscale"
+  }
+}

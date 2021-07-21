@@ -1,0 +1,13 @@
+{
+  "button": {
+    "prev": "Previous",
+    "next": "Next"
+  },
+
+  "label": {
+    "income": "Income for",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month"
+  }
+}

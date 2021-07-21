@@ -5,6 +5,7 @@ import { Formik, Field } from 'formik'
 import * as yup from 'yup'
 
 import BlockUi from 'react-block-ui'
+import { useTranslation } from 'react-i18next'
 
 const customerSchema = yup
   .object()
@@ -21,6 +22,8 @@ const schema = yup.object().shape({
 })
 
 function CustomerInputForm() {
+  const { t } = useTranslation(['customer-form'])
+
   return (
     <section className="mt-5" id="customer">
       <Field name={`customer.name`}>
@@ -28,7 +31,7 @@ function CustomerInputForm() {
           return (
             <Form.Group controlId="name">
               <Form.Label>
-                <b>Nome *</b> :
+                <b>{t('name.label')} *</b> :
               </Form.Label>
               <Form.Control
                 type="text"
@@ -37,10 +40,10 @@ function CustomerInputForm() {
                 isValid={form.submitCount > 0 && meta.touched && !meta.error}
                 isInvalid={form.submitCount > 0 && meta.touched && meta.error}
                 required
-                placeholder="Inserisci il nome"
+                placeholder={t('name.placeholder')}
               />
               <Form.Control.Feedback type="invalid">
-                Il nome è obbligatorio
+                {t('name.feedback')}
               </Form.Control.Feedback>
             </Form.Group>
           )
@@ -51,7 +54,7 @@ function CustomerInputForm() {
         {({ field, form, meta }) => (
           <Form.Group controlId="surname">
             <Form.Label>
-              <b>Cognome *</b> :
+              <b>{t('surname.label')} *</b> :
             </Form.Label>
             <Form.Control
               type="text"
@@ -60,10 +63,10 @@ function CustomerInputForm() {
               isValid={form.submitCount > 0 && meta.touched && !meta.error}
               isInvalid={form.submitCount > 0 && meta.touched && meta.error}
               required
-              placeholder="Inserisci il cognome"
+              placeholder={t('surname.placeholder')}
             />
             <Form.Control.Feedback type="invalid">
-              Il cognome è obbligatorio
+              {t('surname.feedback')}
             </Form.Control.Feedback>
           </Form.Group>
         )}
@@ -73,7 +76,7 @@ function CustomerInputForm() {
         {({ field, form, meta }) => (
           <Form.Group controlId="address">
             <Form.Label>
-              <b>Indirizzo *</b> :
+              <b>{t('address.label')} *</b> :
             </Form.Label>
             <Form.Control
               type="text"
@@ -82,10 +85,10 @@ function CustomerInputForm() {
               isValid={form.submitCount > 0 && meta.touched && !meta.error}
               isInvalid={form.submitCount > 0 && meta.touched && meta.error}
               required
-              placeholder="Inserisci l'indirizzo"
+              placeholder={t('address.placeholder')}
             />
             <Form.Control.Feedback type="invalid">
-              L'indirizzo è obbligatorio
+              {t('address.feedback')}
             </Form.Control.Feedback>
           </Form.Group>
         )}
@@ -96,7 +99,7 @@ function CustomerInputForm() {
           return (
             <Form.Group controlId="number">
               <Form.Label>
-                <b>Recapito Telefonico *</b> :
+                <b>{t('phone.label')} *</b> :
               </Form.Label>
               <Form.Control
                 type="text"
@@ -105,10 +108,10 @@ function CustomerInputForm() {
                 isValid={form.submitCount > 0 && meta.touched && !meta.error}
                 isInvalid={form.submitCount > 0 && meta.touched && meta.error}
                 required
-                placeholder="Inserisci il recapito telefonico"
+                placeholder={t('phone.placeholder')}
               />
               <Form.Control.Feedback type="invalid">
-                Il recapito telefonico è obbligatorio
+                {t('phone.feedback')}
               </Form.Control.Feedback>
             </Form.Group>
           )
@@ -123,6 +126,8 @@ function CustomerForm({ customer, saveCustomer }) {
     actions.resetForm({ values: order })
     actions.setSubmitting(false)
   }
+
+  const { t } = useTranslation(['customer-form'])
 
   return (
     <Formik
@@ -140,7 +145,7 @@ function CustomerForm({ customer, saveCustomer }) {
             <hr className="mt-2"></hr>
 
             <Button className="mr-3" variant="primary" type="submit">
-              <i className="fas fa-save"></i> Salva
+              <i className="fas fa-save"></i> {t('button.save')}
             </Button>
           </Form>
         </BlockUi>

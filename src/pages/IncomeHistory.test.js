@@ -1,8 +1,18 @@
 import React from 'react'
 
-import { render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import IncomeHistory from './IncomeHistory'
+
+import i18NextCustomRender from '../i18n.test'
+import incomeHistoryFormConfig from '../../public/locales/it/income-history-form.json'
+import incomeHistoryConfig from '../../public/locales/it/income-history.json'
+
+const customRender = (ui, renderOptions) =>
+  i18NextCustomRender(
+    ui,
+    { ...incomeHistoryFormConfig, ...incomeHistoryConfig },
+    renderOptions
+  )
 
 const data = [
   { total: 9, date: new Date() },
@@ -20,5 +30,5 @@ beforeEach(() => {
 afterEach(() => {})
 
 test('rendering IncomeHistory', async () => {
-  render(<IncomeHistory />)
+  customRender(<IncomeHistory />)
 })

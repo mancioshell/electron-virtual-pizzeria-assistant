@@ -6,8 +6,8 @@ import OrderForm from '../components/OrderForm'
 import SearchCustomerForm from '../components/SearchCustomerForm'
 
 import { useHistory } from 'react-router-dom'
-
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const SearchCustomerFormRef = React.forwardRef((props, ref) => {
   return <SearchCustomerForm {...props} forwardedRef={ref} />
@@ -36,6 +36,7 @@ const initOrder = {
 
 function InsertOrder() {
   const history = useHistory()
+  const { t } = useTranslation(['insert-order'])
 
   let { id, customerId } = useParams()
   const [order, setOrder] = useState(initOrder)
@@ -66,8 +67,8 @@ function InsertOrder() {
     resetForm(order)
 
     addSuccessMessage({
-      text: 'Ordine salvato con successo',
-      type: 'Ordine',
+      text: t('success-save-message'),
+      type: t('success-save-message-title'),
       show: true
     })
   }
@@ -82,8 +83,8 @@ function InsertOrder() {
     }
 
     addSuccessMessage({
-      text: 'Ordine confermato con successo',
-      type: 'Ordine',
+      text: t('success-confirm-message'),
+      type: t('success-confirm-message-title'),
       show: true
     })
   }
@@ -95,11 +96,11 @@ function InsertOrder() {
           {' '}
           {id ? (
             <>
-              <i className="fas fa-pencil-alt"></i> Modifica Ordine
+              <i className="fas fa-pencil-alt"></i> {t('modify-title')}
             </>
           ) : (
             <>
-              <i className="fas fa-plus"></i> Inserisci Nuovo Ordine
+              <i className="fas fa-plus"></i> {t('insert-title')}
             </>
           )}{' '}
         </h1>
@@ -107,8 +108,7 @@ function InsertOrder() {
 
       <section className="mt-5" id="formsContainer">
         <h3>
-          {' '}
-          <i className="fas fa-user"></i> Cliente{' '}
+          <i className="fas fa-user"></i> {t('title')}
         </h3>
 
         <hr className="mt-2"></hr>

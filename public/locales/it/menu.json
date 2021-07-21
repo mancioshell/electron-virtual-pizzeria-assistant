@@ -1,0 +1,13 @@
+{
+    "items": {
+        "order": "Ordini",
+        "new-order": "Nuovo Ordine",
+        "order-list": "Lista Ordini",
+        "menu": "Menu",
+        "new-dish": "Nuova Portata",
+        "dish-list": "Lista Portate",
+        "customer-list": "Lista Clienti",
+        "income-history": "Storico Incassi",
+        "settings": "Impostazioni"
+    }
+}

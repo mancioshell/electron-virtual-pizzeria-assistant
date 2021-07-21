@@ -1,6 +1,9 @@
 import { Row, Col, Form, Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 function IncomeHistoryForm({ incomeType, setIncomeType, date, setDate }) {
+  const { t } = useTranslation(['income-history-form'])
+
   const steps = (type, date) => {
     const steps = {
       day: 1,
@@ -29,13 +32,15 @@ function IncomeHistoryForm({ incomeType, setIncomeType, date, setDate }) {
       <Col md={{ span: 4 }} xs={{ span: 2 }} className="align-self-center">
         <Button className="mt-3 float-left" variant="dark" onClick={prevDay}>
           <i className="fas fa-arrow-left "></i>{' '}
-          <span className="d-none d-sm-inline-block">&nbsp; Precedente</span>
+          <span className="d-none d-sm-inline-block">
+            &nbsp; {t('button.prev')}
+          </span>
         </Button>
       </Col>
       <Col md={{ span: 4 }} xs={{ span: 8 }}>
         <Form.Group controlId="page-size">
           <Form.Label>
-            <b>Incasso per</b> :
+            <b>{t('label.income')}</b> :
           </Form.Label>
           <Form.Control
             as="select"
@@ -46,9 +51,9 @@ function IncomeHistoryForm({ incomeType, setIncomeType, date, setDate }) {
               setDate(new Date())
             }}>
             {[
-              { label: 'Giorno', value: 'day' },
-              { label: 'Settimana', value: 'week' },
-              { label: 'Mese', value: 'month' }
+              { label: t('label.day'), value: 'day' },
+              { label: t('label.week'), value: 'week' },
+              { label: t('label.month'), value: 'month' }
             ].map((type) => (
               <option key={type.label} value={type.value}>
                 {type.label}
@@ -59,7 +64,9 @@ function IncomeHistoryForm({ incomeType, setIncomeType, date, setDate }) {
       </Col>
       <Col md={{ span: 4 }} xs={{ span: 2 }} className="align-self-center">
         <Button className="mt-3 float-right" variant="dark" onClick={nextDay}>
-          <span className="d-none d-sm-inline-block">Successivo &nbsp;</span>
+          <span className="d-none d-sm-inline-block">
+            {t('button.next')} &nbsp;
+          </span>
           <i className="fas fa-arrow-right"></i>
         </Button>
       </Col>

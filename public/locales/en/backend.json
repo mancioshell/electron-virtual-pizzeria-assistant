@@ -1,0 +1,32 @@
+{
+  "title": "NeW Updates",
+  "button": {
+    "close": "Close",
+    "remind-later": "Remind me later"
+  },
+  "detail": "It has been executed the download of a new version. Close and Open again the application to apply the updates.",
+  "settings": {
+    "name": "Pizzeria Name",
+    "address": "Pizzeria Address",
+    "city": "Pizzeria City",
+    "cap": "Pizzeria Postal Code",
+    "phone": "Pizzeria Phone"
+  },
+  "receipt": {
+    "customer": "Customer",
+    "name": "Name",
+    "surname": "Surname",
+    "address": "Address",
+    "phone": "Phone",
+    "order": "Order",
+    "order-number": "Order Number",
+    "booking-date": "Booking Date",
+    "bookling-hour": "Booking Hour",
+    "note": "Note",
+    "dish": "Dish",
+    "price": "Price",
+    "euro": "Euro",
+    "total": "Total",
+    "disclaimer": "This receipt has no fiscal validity"
+  }
+}
