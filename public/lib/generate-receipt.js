@@ -1,6 +1,11 @@
+const { app } = require('electron')
+
 const escpos = require('escpos')
 escpos.Network = require('escpos-network')
 escpos.USB = require('escpos-usb')
+
+const i18n = require('../i18n')
+let i18next = i18n.initI18Next(app.getLocale())
 
 function formatDate(date) {
   const day = date.getDate()
@@ -36,6 +41,7 @@ async function findUSBPrinter() {
 }
 
 async function generateReceipt(order, settings) {
+
   const options = { encoding: 'utf-8', width: 32 }
 
   let device, printer
@@ -87,33 +93,42 @@ async function generateReceipt(order, settings) {
       printer.align('lt')
 
       printer
-        .text('Cliente: ')
+        .text(`${i18next.t('receipt.customer')}: `)
         .drawLine()
-        .text(`Nome: ${order.customer.name}`)
-        .text(`Cognome: ${order.customer.surname}`)
-        .text(`Indirizzo: ${order.customer.address}`)
-        .text(`Telefono: ${order.customer.phone}`)
+        .text(`${i18next.t('receipt.name')}: ${order.customer.name}`)
+        .text(`${i18next.t('receipt.surname')}: ${order.customer.surname}`)
+        .text(`${i18next.t('receipt.address')}: ${order.customer.address}`)
+        .text(`${i18next.t('receipt.phone')}: ${order.customer.phone}`)
         .drawLine()
         .newLine()
 
-      printer.text('Ordine: ').drawLine().text(`Numero Ordine: ${order._id}`)
+      printer
+        .text(`${i18next.t('receipt.order')}: `)
+        .drawLine()
+        .text(`${i18next.t('receipt.order-number')}: ${order._id}`)
 
       if (order.booking) {
         printer
-          .text(`Data Prenotazione: ${formatDate(order.date)}`)
-          .text(`Orario Prenotazione: ${order.time}`)
+          .text(
+            `${i18next.t('receipt.booking-date')}: ${formatDate(order.date)}`
+          )
+          .text(`${i18next.t('receipt.bookling-hour')}: ${order.time}`)
       }
 
-      printer.text(`Note: ${order.notes}`).newLine()
+      printer.text(`${i18next.t('receipt.note')}: ${order.notes}`).newLine()
 
       printer.tableCustom([
-        { text: 'Portata', width: '0.5', align: 'LEFT' },
-        { text: 'Prezzo (Euro)', width: '0.5', align: 'RIGHT' }
+        { text: `${i18next.t('receipt.dish')}`, width: '0.5', align: 'LEFT' },
+        {
+          text: `${i18next.t('receipt.price')} (${i18next.t('receipt.euro')})`,
+          width: '0.5',
+          align: 'RIGHT'
+        }
       ])
 
       printer.drawLine()
 
-      data.map((item) => {
+      data.forEach((item) => {
         printer.tableCustom([
           {
             text: `${item.dish.name} ${item.amount} x ${item.dish.price}`,
@@ -127,14 +142,14 @@ async function generateReceipt(order, settings) {
       printer.drawLine()
 
       printer.style('B').tableCustom([
-        { text: 'Totale', align: 'LEFT' },
-        { text: `${order.total} Euro`, align: 'RIGHT' }
+        { text: `${order.total} ${i18next.t('receipt.total')}`, align: 'LEFT' },
+        { text: `${order.total} ${i18next.t('receipt.euro')}`, align: 'RIGHT' }
       ])
 
       printer
         .newLine()
         .newLine()
-        .text(`Questo scontrino non ha validita' fiscale`)
+        .text(`${i18next.t('receipt.disclaimer')}`)
 
       printer.newLine().newLine().newLine().newLine().newLine().close()
 

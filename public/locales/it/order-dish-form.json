@@ -1,7 +1,7 @@
 {
   "dish": {
     "label": "Portata",
-    "placeholder": "Inserisci la descrizione della portata",
+    "placeholder": "Seleziona la portata",
     "feedback": "La portata è obbligatoria"
   },
   "amount": {
