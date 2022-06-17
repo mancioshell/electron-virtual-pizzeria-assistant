@@ -179,7 +179,9 @@ module.exports.api = {
 
     currentOrder = { ...currentOrder, items: dishList, customer, total }
 
-    await generateReceipt(currentOrder, currentSettings)
+    console.log(currentSettings)
+
+    //await generateReceipt(currentOrder, currentSettings)
   },
   getTotalIncomeByType: async (date, type) => {
     let orderList = await orders.find()
